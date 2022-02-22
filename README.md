@@ -1,13 +1,8 @@
 ### Anomaly Detection in Air Quality in Turkey
 
+- [You can access the application by clicking the link gived.](https://share.streamlit.io/tahiromat/stock-predictions/app.py)
+
 ## Description: 
-
-# Streamlit Instructions
-- 
-- 
-- 
-
-# Github Instructions
 - 
 - 
 - 
@@ -22,17 +17,17 @@
 - Activate the virtual environment --> $source venv/bin/activate
 - Deactivate the virtual environment --> $deactivate
 
-# To push github 
-
+# Github Instructions 
 - git init
 - git add .
 - git commit -m 'First Commit'
 - git remote add origin <- write the link that you created for new repository ->
 - git push origin master
 
-
-
-
+# Streamlit Instructions
+- 
+- 
+- 
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
