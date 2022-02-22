@@ -22,7 +22,13 @@
 - Activate the virtual environment --> $source venv/bin/activate
 - Deactivate the virtual environment --> $deactivate
 
+# To push github 
 
+- git init
+- git add .
+- git commit -m 'First Commit'
+- git remote add origin <- write the link that you created for new repository ->
+- git push origin master
 
 
 
