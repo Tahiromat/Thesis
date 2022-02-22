@@ -1,6 +1,6 @@
 ### Anomaly Detection in Air Quality in Turkey
 
-- [You can access the application by clicking the link gived.](https://share.streamlit.io/tahiromat/stock-predictions/app.py)
+[You can access the application by clicking the link gived.](https://share.streamlit.io/tahiromat/stock-predictions/app.py)
 
 ## Description: 
 - 
