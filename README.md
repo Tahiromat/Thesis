@@ -19,9 +19,15 @@
 # Github Instructions 
 - $ git init
 - $ git add .
-- $ git commit -m 'First Commit'
+- $ git commit -m 'Commit'
 - $ git remote add origin <- write the link that you created for new repository ->
 - $ git push origin master
+- 
+- TO UPDATE EXISTING FILES IN REPO
+- $ git add .
+- $ git commit -m 'Commit'
+- $ git push origin master
+
 
 # Streamlit Instructions
 - 
@@ -31,4 +37,4 @@
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 ******  The things should be organized before setup  ******
--Create one file to run all files one by one by must line need to be. Mean before page loaded to website all the data need to be updated with the new data come from web scraping file.
+-Create one file to run all files. Mean before page loaded to website all the data need to be updated with the new data come from web scraping file.
