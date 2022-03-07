@@ -2,7 +2,7 @@
 
 # ONE BY ONE
 # 1) Read the data 
-# 2) Convert data to dataframe
+# 2) Convert data to dataframe (Dont forget DateTime fow index column)
 # 3) Fill NaN values with mean value of the column
 # 4) Convert all values between 0-1 
 # 5) Concat the all files in one new df 
