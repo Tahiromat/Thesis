@@ -14,6 +14,7 @@
 
 
 from asyncore import read
+from math import fabs
 from turtle import shape
 import pandas as pd
 import glob
@@ -76,12 +77,12 @@ data12 = pd.read_csv('RawData/Kocaeli/korfezmthm.csv')
 data13 = pd.read_csv('RawData/Kocaeli/yeniköymthm.csv')
 
 
-# DF = pd.concat([data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13], ignore_index=True)
+DF = pd.concat([data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13], ignore_index=False)
 
 
-# DF.groupby('Tarih')
-# DF = DF.groupby('Tarih').mean()
-# print(DF)
+DF.groupby('Tarih')
+DF = DF.groupby('Tarih').mean()
+print(DF)
 
 # DF.to_csv('Dataset/Kocaeli/newdf.csv')
 # df = pd.DataFrame({'Time': ['03/06/2019 00:00:56','03/06/2019 00:00:56', '03/06/2019 01:00:56', '03/06/2019 01:00:56', '03/06/2019 02:00:56', '03/06/2019 03:00:56', '03/06/2019 04:00:56'], 'pm':[148.79, 100, 164.50, 90, 143.17, 127.49, 100.78], 'so':[47.63, 50.63, 42.96, 50.96,28.43, 18.94, 16.71]}, columns=['Time', 'pm', 'so'])

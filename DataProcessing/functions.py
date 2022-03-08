@@ -1,31 +1,8 @@
-from fileinput import filename
-import pandas as pd
-import os
-from  read_and_convert_file import convert_xlsx2csv, read_excel_file
+from convert_save_files import find_subcities_convert2csv_save
 
-PATH = 'RawData/Kocaeli'
-os.chdir(PATH)
+MAIN_FOLDER_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/RawData'
 
-raw_path = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/RawData/Kocaeli'
-save_path = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/DataProcessing'
-raw_name = 'alikahyamthm'
-save_name = 'alikahyamthm'
-
-convert_xlsx2csv(read_excel_file(raw_path, raw_name), save_path, save_name)
+find_subcities_convert2csv_save(MAIN_FOLDER_PATH)
 
 
-# for f in os.listdir():
-#     f_name, f_ext = os.path.splitext(f)
-#     if f_ext=='.xlsx':
-#         print(f_name)
-#         print(f_ext)
-        # f = pd.read_excel(r'$PATH/f_name.xlsx')
-        # f.to_csv(r'$PATH/f_name'.csv, index=None, header=True)
 
-
-#     # # print(f_name)
-
-#     # f = pd.read_excel(r'$PATH/f_name.xlsx')
-#     # f.to_csv(r'PATH/f_name'.csv, index=None, header=True)
-
-    
