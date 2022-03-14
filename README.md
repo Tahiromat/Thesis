@@ -37,4 +37,7 @@
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 ******  The things should be organized before setup  ******
--Create one file to run all files. Mean before page loaded to website all the data need to be updated with the new data come from web scraping file.
+- Create one file to run all files. Mean before page loaded to website all the data need to be updated with the new data come from web scraping file.
+
+- For All datasets the column names need to be same. If some columns are missing then create new one for that file and fill with 0. because the time visualization thats going to make problem.
+
