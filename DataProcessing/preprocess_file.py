@@ -1,5 +1,3 @@
-from itertools import count
-from tkinter import N
 import pandas as pd
 from read_csv_and_change_dtype import change_dtype_utility, read_csv_files
 
@@ -13,14 +11,13 @@ def preprocess_sub_csv_file(csv_file_path):
     total_column_names = total_column_names[1:]
 
     for name in total_column_names:
-        # Eğer sayı değeri bin değeri bulunduruyor ise '2.887,90' uygulanan method farklı 
 
         df[name] = change_dtype_utility(df, name, '-', '0')
         df[name] = change_dtype_utility(df, name, '.', '')
         df[name] = change_dtype_utility(df, name, ',', '.')
         df[name] = df[name].astype(float)
 
-    print(f'{df.info()}')
+    # print(f'{df.info()}')
     
     return df
 

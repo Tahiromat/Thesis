@@ -41,3 +41,4 @@
 
 - For All datasets the column names need to be same. If some columns are missing then create new one for that file and fill with 0. because the time visualization thats going to make problem.
 
+- For streamlit when city choosed with that action at the same time files need to be loaded under that city files need to be listed down  

@@ -35,7 +35,7 @@ def __subfolder_preprocess(main_folder_path, city_name):
 def find_subcities4preprocess(main_folder_path):
 
     for city_name in os.listdir(main_folder_path):
-        print(city_name)
+        # print(city_name)
 
         __subfolder_preprocess(main_folder_path, city_name)
 
