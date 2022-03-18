@@ -19,5 +19,6 @@ def __subfolder_convert_and_save_files(main_folder_path, city_name):
 
 # That Method Work Clearly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def find_subcities_convert2csv_save(main_folder_path):
+    print('\n\nAll .xlsx files converting to .csv file......................................................... ')
     for city_name in os.listdir(main_folder_path):
         __subfolder_convert_and_save_files(main_folder_path, city_name)
