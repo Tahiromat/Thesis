@@ -10,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-DATA_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/test.csv'
+DATA_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset/Ankara/ankara1.csv'
 
 df = pd.read_csv(DATA_PATH)
 df['Tarih'] = pd.to_datetime(df['Tarih'])
@@ -22,7 +22,7 @@ def create_new_df_from_mean_of_subcities():
     for name in names:
         print(name)
         if df[name].mean() != 0:
-            sns.scatterplot(data=df, x='Tarih', y=name)
+            sns.lineplot(data=df, x='Tarih', y=name)
             plt.title(f'{name} Based Date')
             plt.show()
         else:
