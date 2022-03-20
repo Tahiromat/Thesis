@@ -1,0 +1,1 @@
+BASE_URL = "https://sim.csb.gov.tr/STN/STN_Report/StationDataDownloadNew"
