@@ -1,1 +1,7 @@
 BASE_URL = "https://sim.csb.gov.tr/STN/STN_Report/StationDataDownloadNew"
+SELECT_ALL_CITIES_PATH = "//*[@id='StationDataDownloadForm']/fieldset[1]/div[1]/div[1]/div[1]/div[2]/div/div/div/div/span[3]/i"
+SELECT_ALL_PARAMETERS_FOR_DF_PATH = "//*[@id='StationDataDownloadForm']/fieldset[1]/div[1]/div[1]/div[1]/div[6]/div/div/div/div/span[3]/i"
+HOURLY_DF_PATH = "//*[@id='StationDataDownloadForm']/fieldset[1]/div[1]/div[1]/div[2]/div[1]/div/div/label[1]"
+EXPORT_DF_TO_XLSX_PATH = "//*[@id='undefined_0bbbf22b']/div[1]/a"
+INQUIRE_FOR_DF_PATH = "//*[@id='StationDataDownloadForm']/fieldset[1]/div[1]/div[2]/div[1]/div/div/div/button"
+STATION_NAMES_PATH = "//*[@id='StationIds_ed9ec6c4']"

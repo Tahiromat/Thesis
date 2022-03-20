@@ -1,65 +1,29 @@
-
-####################### DO NOT CHANGE THAT METHODS ####################### 
-
-import time
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-import constants as const
 import helper_functions4scrap as hlp_mthds
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+# 1) Load page
+hlp_mthds.load_main_page()
 
+# 2) Select all cities
+hlp_mthds.select_all_city()
 
-def load_main_page():
-    # Ana sayfayı yükle 
-    driver.maximize_window()
-    driver.get(const.BASE_URL)
+# 3) Select Station
+# For that method fallow this link: https://www.youtube.com/watch?v=p9NpddaIZWs
+hlp_mthds.select_station()
 
-def select_city():
-    # 81 ilin hepsini işaretle
-    load_main_page()
-    time.sleep(5)
-    pass
+# 4) Select all 7 parameters
+hlp_mthds.select_seven_parameters()
 
-select_city()
+# 5) Select hourly df
+hlp_mthds.select_data_time_type()
 
-# def select_station():
-#     # İstasyon seç 
-#     pass
+# 6) Select start date
+hlp_mthds.select_start_date()
 
-# def select_seven_parameters():
-#     # Dataset için gerekli 7 parametreyi seç
-#     pass
+# 7) Select end date
+hlp_mthds.select_end_date()
 
-# def select_data_time_type():
-#     # Saatlik data olacak şekilde seçim yap
-#     pass
+# 8) Select inquire for df
+hlp_mthds.inquire_for_data_file()
 
-# def select_start_date():
-#     # Başlangıç tarihi seç
-#     pass
-
-# def select_end_date():
-#     # Bitiş tarihi seç
-#     pass
-
-# def inquire_for_data_file():
-#     # Seçimler doğrultusunda veri setini sorgula
-#     pass
-
-# def export_data_to_xlsx_file():
-#     # Excel dosyasını indirilenler kalsörünün altına kaydet
-#     pass
-
-# def replace_filename_with_selected_station_name():
-#     # İndirilen dosyaya indirilen istasyon adını ver
-#     pass
-
-# def send_xlsx_file2related_folder_under_RawData():
-#     # Dosyayı RawData klasörünün altında ilgili şehre kaydet
-#     pass
+# 9) Select export data to xlsx file
+hlp_mthds.export_data_to_xlsx_file()
