@@ -22,6 +22,7 @@
 - $ git commit -m 'Commit'
 - $ git remote add origin <- write the link that you created for new repository ->
 - $ git push origin master
+- $ rm -rf .git -------> For re-init your work to another repo; then turn to $ git init back from another folder.
 - 
 - TO UPDATE EXISTING FILES IN REPO
 - $ git add .
