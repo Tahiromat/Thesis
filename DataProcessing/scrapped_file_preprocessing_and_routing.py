@@ -36,3 +36,7 @@ downloaded_path = '/home/tahir/Downloads/'
 new_path_to_go = '/home/tahir/Downloads/'
 
 send_xlsx_file2related_folder_under_RawData(downloaded_path, new_path_to_go)
+
+
+# For copying the files --> https://stackoverflow.com/questions/3397752/copy-multiple-files-in-python
+# For create new folder and past copied files --> https://www.codegrepper.com/code-examples/python/how+to+create+a+new+folder+in+python
