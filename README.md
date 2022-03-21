@@ -1,6 +1,5 @@
 ### Anomaly Detection in Air Quality in Turkey
 
-
 ## Description: 
 - 
 - 
@@ -28,7 +27,6 @@
 - $ git add .
 - $ git commit -m 'Commit'
 - $ git push origin master
-
 
 # Streamlit Instructions
 - 
