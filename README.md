@@ -29,10 +29,10 @@
 - $ git push origin master
 
 # Streamlit Instructions
-- [For visualizatin](https://www.youtube.com/watch?v=VZ_tS4F6P2A)
-- 
-- 
-
+- [Geographical Data Visualization](https://www.youtube.com/watch?v=PuJ_JUkahXQ)
+- [For animated visualizatin](https://www.youtube.com/watch?v=VZ_tS4F6P2A)
+- [Visualize the outliers](https://www.youtube.com/watch?v=1NXryMoU7Ho)
+- [Visualize the forecast](https://www.youtube.com/watch?v=gX6nZ7IINu8)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 ******  The things should be organized before setup  ******
@@ -41,3 +41,4 @@
 - For All datasets the column names need to be same. If some columns are missing then create new one for that file and fill with 0. because the time visualization thats going to make problem.
 
 - For streamlit when city choosed with that action at the same time files need to be loaded under that city files need to be listed down  
+- [For the time series algorithms](https://www.youtube.com/watch?v=7MhZ2DDg89Y)
