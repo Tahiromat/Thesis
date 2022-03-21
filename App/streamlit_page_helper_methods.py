@@ -10,4 +10,6 @@ def city_names(main_folder_path):
     return city_name_list
 
 
-# city_names(MAIN_FOLDER_PATH)
+def find_average_df_for_all_cities(main_folder_path):
+    pass
+    # return df
