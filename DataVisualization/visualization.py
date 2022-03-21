@@ -10,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-DATA_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset/Ankara/ankara1.csv'
+DATA_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset/Kocaeli/KocaeliAverageDF.csv'
 
 df = pd.read_csv(DATA_PATH)
 df['Tarih'] = pd.to_datetime(df['Tarih'])

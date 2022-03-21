@@ -24,10 +24,10 @@ def send_xlsx_file2related_folder_under_RawData(downloaded_path, new_path_to_go)
         if file.startswith('Veri Detayları') and file.endswith('.xlsx'):
             preprocess_scraped_exel_file(downloaded_path, new_path_to_go, file)
             time.sleep(1)
-        elif file.endswith('.csv'):
-            send_xlsx_file()
-            time.sleep(1)
-            pass
+        # elif file.endswith('.csv'):
+        #     send_xlsx_file()
+        #     time.sleep(1)
+        #     pass
         else:
             os.remove(file)
             time.sleep(1)
