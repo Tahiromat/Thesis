@@ -6,6 +6,10 @@ from datasets_merging import create_new_df_from_mean_4all_subcities
 MAIN_FOLDER_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/RawData'
 NEW_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset'
 
+# First scrapping method will work
+
+# Secondly Scrapped file preprocessing method will work
+
 # That Method Work Clearly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 find_subcities_convert2csv_save(MAIN_FOLDER_PATH)
 

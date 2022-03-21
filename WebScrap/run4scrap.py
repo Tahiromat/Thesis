@@ -8,7 +8,7 @@ hlp_mthds.select_all_city()
 
 # 3) Select Station
 # For that method fallow this link: https://www.youtube.com/watch?v=p9NpddaIZWs
-hlp_mthds.select_station()
+# hlp_mthds.select_station()
 
 # 4) Select all 7 parameters
 hlp_mthds.select_seven_parameters()
@@ -23,7 +23,7 @@ hlp_mthds.select_start_date()
 hlp_mthds.select_end_date()
 
 # 8) Select inquire for df
-hlp_mthds.inquire_for_data_file()
+# hlp_mthds.inquire_for_data_file()
 
 # 9) Select export data to xlsx file
-hlp_mthds.export_data_to_xlsx_file()
+# hlp_mthds.export_data_to_xlsx_file()
