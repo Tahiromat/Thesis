@@ -34,13 +34,10 @@
 - [Visualize the outliers](https://www.youtube.com/watch?v=1NXryMoU7Ho)
 - [Visualize the forecast](https://www.youtube.com/watch?v=gX6nZ7IINu8)
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-******  The things should be organized before setup  ******
-- Create one file to run all files. Mean before page loaded to website all the data need to be updated with the new data come from web scraping file.
-
-- For All datasets the column names need to be same. If some columns are missing then create new one for that file and fill with 0. because the time visualization thats going to make problem.
-
-- For streamlit when city choosed with that action at the same time files need to be loaded under that city files need to be listed down  
+# Notes
 - [For the time series algorithms](https://www.youtube.com/watch?v=7MhZ2DDg89Y)
-- Scrapping helper file export method need to be functionally. This is not working yet.
+
+******************************************************************************************************************************************************  
+# Current Works 
 - For select station method the value need to be change for all station names
+- Preprocessed scrapped csv files need to be sent to DatasetFolder and also preprocessing of scrapped data neet to be combine with preprocess all csv method.

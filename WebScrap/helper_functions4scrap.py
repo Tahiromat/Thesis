@@ -33,7 +33,7 @@ def select_station():
     driver.execute_script("arguments[0].click();", dropdown_button)
     time.sleep(2)
     station = driver.find_element(By.XPATH, const.STATION_NAME_PATH)
-    station.send_keys('Adana - Valilik')
+    station.send_keys('Afyon - Merkez/Karayolları')
     time.sleep(3)
 
 def select_data_time_type():
@@ -63,7 +63,7 @@ def inquire_for_data_file():
     time.sleep(5)
 
 def export_data_to_xlsx_file():
-    # export_df_button = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, const.EXPORT_DF_TO_XLSX_PATH))).click()
     export_df_button = driver.find_element(By.XPATH, const.EXPORT_DF_TO_XLSX_PATH)
+    time.sleep(1)
     export_df_button.click()
-    time.sleep(30)
+    time.sleep(5)

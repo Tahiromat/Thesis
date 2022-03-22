@@ -7,6 +7,9 @@ warnings.simplefilter("ignore")
 def preprocess_scraped_exel_file(downloaded_path, new_path_to_go, file):
     df = pd.read_excel(downloaded_path + '/' + file)
     file_name = df.columns[1]
+    file_name = file_name.replace(' ', '')
+    file_name = file_name.replace('-', '')
+    file_name = file_name.replace('/', '')
     real_columns = df.loc[0]
     df.columns = real_columns
     df.drop(labels=0, axis=0, inplace=True)
@@ -24,10 +27,6 @@ def send_xlsx_file2related_folder_under_RawData(downloaded_path, new_path_to_go)
         if file.startswith('Veri Detayları') and file.endswith('.xlsx'):
             preprocess_scraped_exel_file(downloaded_path, new_path_to_go, file)
             time.sleep(1)
-        # elif file.endswith('.csv'):
-        #     send_xlsx_file()
-        #     time.sleep(1)
-        #     pass
         else:
             os.remove(file)
             time.sleep(1)

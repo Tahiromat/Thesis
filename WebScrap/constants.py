@@ -16,7 +16,9 @@ END_DATE_PATH = "//*[@id='StationDataDownload_EndDateTime']"
 
 INQUIRE_FOR_DF_PATH = "//*[@id='StationDataDownloadForm']/fieldset[1]/div[1]/div[2]/div[1]/div/div/div/button"
 
-EXPORT_DF_TO_XLSX_PATH = "//*[@id='undefined_12335179']/div[1]/a"
+EXPORT_DF_TO_XLSX_PATH = "//a[@class='k-button k-button-icontext k-grid-excel']"
+
+
 
 STATION_LIST = [
 "Adana - Çatalan",
