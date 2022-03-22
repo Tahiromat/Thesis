@@ -42,3 +42,5 @@
 
 - For streamlit when city choosed with that action at the same time files need to be loaded under that city files need to be listed down  
 - [For the time series algorithms](https://www.youtube.com/watch?v=7MhZ2DDg89Y)
+- Scrapping helper file export method need to be functionally. This is not working yet.
+- For select station method the value need to be change for all station names

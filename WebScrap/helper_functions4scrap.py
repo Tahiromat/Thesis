@@ -29,14 +29,11 @@ def select_seven_parameters():
     time.sleep(3)
 
 def select_station():
-
-    dropdown_button = driver.find_element(By.XPATH, "//*[@id='StationDataDownloadForm']/fieldset[1]/div[1]/div[1]/div[1]/div[5]/div/div/span[1]/span/span[2]/span")
+    dropdown_button = driver.find_element(By.XPATH, const.SELECT_STATION_DROPDOWN_BUTTON_PATH)
     driver.execute_script("arguments[0].click();", dropdown_button)
-    time.sleep(1)
-
-    stations = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.ID, "StationIds_0dc340f9_listbox")))
-    station = Select(stations)
-    station.select_by_index(5)
+    time.sleep(2)
+    station = driver.find_element(By.XPATH, const.STATION_NAME_PATH)
+    station.send_keys('Adana - Valilik')
     time.sleep(3)
 
 def select_data_time_type():
@@ -45,10 +42,9 @@ def select_data_time_type():
     time.sleep(3)
 
 def select_start_date():
-    # Start date will be last date of the fifrst column date of old dataset
     select_start_date = driver.find_element(By.XPATH, const.START_DATE_PATH)
     select_start_date.clear()
-    select_start_date.send_keys('21.02.2021 16:00')
+    select_start_date.send_keys('21.02.2022 16:00')
     select_start_date.click()
     time.sleep(3)
 
@@ -64,9 +60,10 @@ def select_end_date():
 def inquire_for_data_file():
     inquire_df = driver.find_element(By.XPATH, const.INQUIRE_FOR_DF_PATH)
     inquire_df.click()
-    time.sleep(3)
+    time.sleep(5)
 
 def export_data_to_xlsx_file():
-    export_df = driver.find_element(By.XPATH, const.EXPORT_DF_TO_XLSX_PATH)
-    export_df.click()
-    time.sleep(3)
+    # export_df_button = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, const.EXPORT_DF_TO_XLSX_PATH))).click()
+    export_df_button = driver.find_element(By.XPATH, const.EXPORT_DF_TO_XLSX_PATH)
+    export_df_button.click()
+    time.sleep(30)
