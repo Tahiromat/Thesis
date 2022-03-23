@@ -1,10 +1,12 @@
 import os
 import pandas as pd
+import time
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 # That Method Work Clearly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def __create_new_df_from_mean_of_subcities(old_subfolder_path, city_name):
+    time.sleep(10)
     df_list = []
     os.chdir(old_subfolder_path + '/' + city_name)
     for f in os.listdir():
@@ -25,3 +27,6 @@ def create_new_df_from_mean_4all_subcities(main_path):
 
 
 
+'''
+    If there is only one df in df_list then convert that city to average df for specific city
+'''

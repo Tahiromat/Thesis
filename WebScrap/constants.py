@@ -24,80 +24,80 @@ STATION_LIST = [
 "Adana - Çatalan",
 "Adana - Doğankent",
 "Adana - Meteoroloji"
-# Adana - Valilik
-# Adana-Çukurova
-# Adana-Seyhan
-# Adana-Turhan Cemal Beriker Bulvarı 
-# Adana-Yakapınar
-# Adıyaman
-# Afyon
-# Afyon - Merkez/Karayolları
-# Afyon - Sandıklı
-# Afyon-Selçuk Cami
-# Ağrı
-# Ağrı - Doğubeyazıt
-# Ağrı - Patnos
-# Aksaray
-# Amasya
-# Amasya - Merzifon
-# Amasya - Suluova
-# Amasya - Şehzade
-# Ankara - Bahçelievler
-# Ankara - Batıkent
-# Ankara - Demetevler
-# Ankara - Etimesgut
-# Ankara - Etlik
-# Ankara - Kayaş
-# Ankara - Keçiören Sanatoryum
-# Ankara - Ostim
-# Ankara - Polatlı
-# Ankara - Sıhhıye
-# Ankara - Sincan
-# Ankara - Siteler
-# Ankara - Törekent
-# Ankara - Ulus Trafik
-# Ankara Yaşamkent
-# Antalya
-# Antalya - Alanya
-# Antalya - Gazipaşa
-# Antalya - Kumluca Sanayi
-# Antalya - Manavgat
-# Antalya - Muratpaşa
-# Antalya - Serik
-# Antalya - Trafik
-# Ardahan
-# Artvin
-# Artvin - Hopa
-# Aydın
-# Aydın - Didim
-# Aydın - Efeler
-# Aydın - Germencik
-# Aydın - Nazilli
-# Aydın - Söke
-# Aydın - Trafik
-# Balıkesir
-# Balıkesir - Bandırma-MTHM
-# Balıkesir - Edremit - MTHM
-# Balıkesir - Erdek-MTHM
-# Balıkesir - Merkez - MTHM
-# Bartın
-# Batman
-# Bayburt
-# Bilecik
-# Bilecik - Bozüyük-MTHM
-# Bingöl
-# Bitlis
-# Bolu - Abant
-# Bolu - Karaçayır Parkı
-# Bolu - Kızılay Parkı
-# Burdur
-# Burdur - Bucak
-# Bursa
-# Bursa - Beyazıt Cad.-MTHM
-# Bursa - İnegöl-MTHM
-# Bursa - Kestel-MTHM
-# Bursa - Kültür Park-MTHM
-# Bursa - Uludağ Üniv.-MTHM
+"Adana - Valilik",
+"Adana-Çukurova",
+"Adana-Seyhan",
+"Adana-Turhan Cemal Beriker Bulvarı ",
+"Adana-Yakapınar",
+"Adıyaman",
+"Afyon",
+"Afyon - Merkez/Karayolları",
+"Afyon - Sandıklı",
+"Afyon-Selçuk Cami",
+"Ağrı",
+"Ağrı - Doğubeyazıt",
+"Ağrı - Patnos",
+"Aksaray",
+"Amasya",
+"Amasya - Merzifon",
+"Amasya - Suluova",
+"Amasya - Şehzade",
+"Ankara - Bahçelievler",
+"Ankara - Batıkent",
+"Ankara - Demetevler",
+"Ankara - Etimesgut",
+"Ankara - Etlik",
+"Ankara - Kayaş",
+"Ankara - Keçiören Sanatoryum",
+"Ankara - Ostim",
+"Ankara - Polatlı",
+"Ankara - Sıhhıye",
+"Ankara - Sincan",
+"Ankara - Siteler",
+"Ankara - Törekent",
+"Ankara - Ulus Trafik",
+"Ankara Yaşamkent",
+"Antalya",
+"Antalya - Alanya",
+"Antalya - Gazipaşa",
+"Antalya - Kumluca Sanayi",
+"Antalya - Manavgat",
+"Antalya - Muratpaşa",
+"Antalya - Serik",
+"Antalya - Trafik",
+"Ardahan",
+"Artvin",
+"Artvin - Hopa",
+"Aydın",
+"Aydın - Didim",
+"Aydın - Efeler",
+"Aydın - Germencik",
+"Aydın - Nazilli",
+"Aydın - Söke",
+"Aydın - Trafik",
+"Balıkesir",
+"Balıkesir - Bandırma-MTHM",
+"Balıkesir - Edremit - MTHM",
+"Balıkesir - Erdek-MTHM",
+"Balıkesir - Merkez - MTHM",
+"Bartın",
+"Batman",
+"Bayburt",
+"Bilecik",
+"Bilecik - Bozüyük-MTHM",
+"Bingöl",
+"Bitlis",
+"Bolu - Abant",
+"Bolu - Karaçayır Parkı",
+"Bolu - Kızılay Parkı",
+"Burdur",
+"Burdur - Bucak",
+"Bursa",
+"Bursa - Beyazıt Cad.-MTHM",
+"Bursa - İnegöl-MTHM",
+"Bursa - Kestel-MTHM",
+"Bursa - Kültür Park-MTHM",
+"Bursa - Uludağ Üniv.-MTHM",
 # Bursa-Gürsu
 # Bursa-Kestel (Hilal Parkı)
 # Bursa-Nilüfer

@@ -30,11 +30,12 @@ def select_seven_parameters():
 
 def select_station():
     dropdown_button = driver.find_element(By.XPATH, const.SELECT_STATION_DROPDOWN_BUTTON_PATH)
-    driver.execute_script("arguments[0].click();", dropdown_button)
+    dropdown_button.click()
     time.sleep(2)
     station = driver.find_element(By.XPATH, const.STATION_NAME_PATH)
-    station.send_keys('Afyon - Merkez/Karayolları')
+    station.send_keys('Aydın')
     time.sleep(3)
+    
 
 def select_data_time_type():
     hourly_df = driver.find_element(By.XPATH, const.HOURLY_DF_PATH)
@@ -67,3 +68,5 @@ def export_data_to_xlsx_file():
     time.sleep(1)
     export_df_button.click()
     time.sleep(5)
+
+

@@ -40,4 +40,3 @@
 ******************************************************************************************************************************************************  
 # Current Works 
 - For select station method the value need to be change for all station names
-- Preprocessed scrapped csv files need to be sent to DatasetFolder and also preprocessing of scrapped data neet to be combine with preprocess all csv method.
