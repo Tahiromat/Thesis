@@ -33,7 +33,7 @@ def select_station():
     dropdown_button.click()
     time.sleep(2)
     station = driver.find_element(By.XPATH, const.STATION_NAME_PATH)
-    station.send_keys('Aydın')
+    station.send_keys('Balıkesir - Bandırma-MTHM')
     time.sleep(3)
     
 

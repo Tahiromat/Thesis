@@ -18,7 +18,8 @@ new_path_to_go = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/D
 # # That Method Work Clearly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 create_folder_with_uniq_cities(FILE_DOWNLOADED_PATH, CITIES_CREATE_PATH)
 
-send_preprocess_scraped_exel2csv_files_dataset_folder(downloaded_path, new_path_to_go)
+# # That Method Work Clearly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+send_preprocess_scraped_exel2csv_files_dataset_folder(FILE_DOWNLOADED_PATH, new_path_to_go)
 
 # # # # That Method Work Clearly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # find_subcities_convert2csv_save(MAIN_FOLDER_PATH)

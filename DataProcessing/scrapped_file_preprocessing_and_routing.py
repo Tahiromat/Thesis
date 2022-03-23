@@ -52,6 +52,7 @@ def __preprocess_scraped_exel_file(downloaded_path, new_path_to_go, file):
 
 # That Method Work Clearly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def send_preprocess_scraped_exel2csv_files_dataset_folder(downloaded_path, new_path_to_go):
+    print('\n\nNew csv wile is loading under uniq cities......................................................... ')
     os.chdir(downloaded_path)
     # __clear_old_csv_files(downloaded_path)
     for file in os.listdir():
