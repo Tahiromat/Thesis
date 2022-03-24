@@ -1,6 +1,3 @@
-'''
-    That methods will creates new city folders based on downloaded xlsx files (FOR UNIQ CITIES) --> under Dataset Folder.
-'''
 import os 
 import pandas as pd
 import warnings

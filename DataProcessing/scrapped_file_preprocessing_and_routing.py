@@ -32,7 +32,6 @@ def __preprocess_scraped_exel_file(downloaded_path, new_path_to_go, file):
     df.columns=df.columns.astype(str)
     df.rename(columns={'NaT':'Date'}, inplace=True)
     __preprocess_all_csv_files(df)
-    
     os.chdir(new_path_to_go)
     for city_name in os.listdir():
         if city_name == file_name.split(' ')[0]:
@@ -41,14 +40,7 @@ def __preprocess_scraped_exel_file(downloaded_path, new_path_to_go, file):
             print(f'Loading df is : {new_file_name} ')
             df.to_csv(new_path_to_go + '/' + city_name + '/' + new_file_name + '.csv', index=False)
             print(f'{new_file_name} : Successfuly uploaded\n')
-    #!!!!!!!!!!!!!!!!  Here check if the new file already exist under dataset/uniq city file then concat new and old file based on Date column. 
-
-# That Method Work Clearly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# def __clear_old_csv_files(downloaded_path):
-#     os.chdir(downloaded_path)
-#     for file in os.listdir():
-#         if file.endswith('.csv'):
-#             os.remove(file)
+#!!!!!!!!!!!!!!!!  Here check if the new file already exist under dataset/uniq city file then concat new and old file based on Date column. 
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def send_preprocess_scraped_exel2csv_files_dataset_folder(downloaded_path, new_path_to_go):

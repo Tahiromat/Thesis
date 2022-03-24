@@ -2,6 +2,7 @@ import time
 import constants as const
 from selenium.webdriver.common.by import By
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def run_all_scrap_help_functions(DRIVER ,STATION_NAME, START_DATE):
     # Load page
     DRIVER.maximize_window()
@@ -48,5 +49,3 @@ def run_all_scrap_help_functions(DRIVER ,STATION_NAME, START_DATE):
     time.sleep(1)
     export_df_button.click()
     time.sleep(3)
-
-
