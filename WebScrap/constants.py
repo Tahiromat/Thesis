@@ -23,14 +23,14 @@ EXPORT_DF_TO_XLSX_PATH = "//a[@class='k-button k-button-icontext k-grid-excel']"
 STATION_LIST = [
 "Adana - Çatalan",
 "Adana - Doğankent",
-"Adana - Meteoroloji"
+"Adana - Meteoroloji",
 "Adana - Valilik",
 "Adana-Çukurova",
 "Adana-Seyhan",
 "Adana-Turhan Cemal Beriker Bulvarı ",
 "Adana-Yakapınar",
 "Adıyaman",
-"Afyon",
+# "Afyon",
 "Afyon - Merkez/Karayolları",
 "Afyon - Sandıklı",
 "Afyon-Selçuk Cami",
