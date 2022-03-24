@@ -123,9 +123,9 @@ STATION_LIST = [
 "Edirne - Karaağaç-MTHM",
 "Edirne - Keşan-MTHM",
 "Elazığ",
-## "EMEP - Ankara Çubuk", No data hatası veriyor
-## "EMEP - İzmir Seferihisar", No data hatası veriyor
-## "EMEP - Kırklareli Vize", No data hatası veriyor
+## "EMEP - Ankara Çubuk", EMEP isimlendirme hatası
+## "EMEP - İzmir Seferihisar", EMEP isimlendirme hatası
+## "EMEP - Kırklareli Vize", EMEP isimlendirme hatası
 "Erzincan",
 "Erzincan - Trafik",
 "Erzurum",
