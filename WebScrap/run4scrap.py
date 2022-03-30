@@ -5,7 +5,7 @@ import helper_functions4scrap as hlp_mthds
 from webdriver_manager.chrome import ChromeDriverManager
 
 DRIVER = webdriver.Chrome(ChromeDriverManager().install())
-DATA_START_DATE = '26.03.2022 00:00'
+DATA_START_DATE = '29.03.2018 00:00'
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

@@ -1,6 +1,8 @@
 import time
 import constants as const
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def run_all_scrap_help_functions(DRIVER ,STATION_NAME, START_DATE):
@@ -45,7 +47,7 @@ def run_all_scrap_help_functions(DRIVER ,STATION_NAME, START_DATE):
     time.sleep(3)
 
     # Select export data to xlsx file
-    export_df_button = DRIVER.find_element(By.XPATH, const.EXPORT_DF_TO_XLSX_PATH)
+    export_df_button = WebDriverWait(DRIVER, 6).until(EC.presence_of_element_located((By.XPATH, const.EXPORT_DF_TO_XLSX_PATH)))
     time.sleep(1)
     export_df_button.click()
     time.sleep(3)
