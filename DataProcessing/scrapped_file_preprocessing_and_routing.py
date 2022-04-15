@@ -50,6 +50,6 @@ def send_preprocess_scraped_exel2csv_files_dataset_folder(downloaded_path, new_p
         if file.startswith('Veri Detayları') and file.endswith('.xlsx'):
             __preprocess_scraped_exel_file(downloaded_path, new_path_to_go, file)
             time.sleep(1)
-        else:
-            os.remove(file)
-            time.sleep(1)
+        # else:
+        #     os.remove(file)
+        #     time.sleep(1)
