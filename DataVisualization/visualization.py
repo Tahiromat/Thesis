@@ -25,7 +25,7 @@ name_list = df.columns[1:]
 for name in name_list:
     sns.lineplot(data=df, x='Date', y=name)
     plt.title(name)
-    plt.grid()
+    # plt.grid()
     plt.show()
 
 
