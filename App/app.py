@@ -9,13 +9,18 @@ from plotly import graph_objs as go
 from streamlit_option_menu import option_menu
 from streamlit_page_helper_methods import city_names
 
+from home_page import home_page
 
 
 MAIN_FOLDER_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset'
 CITY_NAMES_FOR_SIDE_BAR = city_names(MAIN_FOLDER_PATH)
 
-st.sidebar.selectbox('Cities', CITY_NAMES_FOR_SIDE_BAR)
+with st.sidebar:
+    selected_city = st.sidebar.selectbox('Cities', CITY_NAMES_FOR_SIDE_BAR)
 
+def load_data(city_name):
+    return city_name
+data = load_data(selected_city)
 
 # From here you will choose data set 
 df = pd.read_csv('/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset/İstanbul/İstanbulAverageDF.csv')
@@ -31,18 +36,30 @@ footer {visibility: hidden;}
 </style>
 
 """
-# st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 # Horizontal Menu
-selected = option_menu(None, ["Home", "Visualization", "Forecasting", 'Anomaly D.', 'Choose City'], 
-    icons=['house', 'cloud-upload', "list-task", 'gear', 'list'], 
-    menu_icon="cast", default_index=0, orientation="horizontal")
+with st.sidebar:
+    selected = option_menu(None, ["Home", "Visualization", "Forecasting", 'Anomaly Detection'], 
+        icons=['house', 'list-task', "list-task", 'list-task'], 
+        menu_icon="cast", default_index=0, orientation="vertical")
+    # selected
+
+with st.sidebar:
+
+    forecast_algorithms = option_menu(None, ["Prophet", "LSTM", "ARIMA", 'AUTOENCODER'], 
+        icons=['list-task', 'list-task', "list-task", 'list-task'], 
+        menu_icon="cast", default_index=0, orientation="vertical")
+    # selected
 
 if selected == "Home":
 
-    st.write("""### Anomaly Detection in Air Quality of Turkey """)
+    st.title("""Anomaly Detection in Air Quality of Turkey """)
     st.markdown(""" ### """)
     st.markdown(""" ### """)
+
+    home_page()
+
     def visualize_PM10():
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=df['Date'], y=df['PM10 ( µg/m3 )']))
@@ -50,7 +67,7 @@ if selected == "Home":
         fig.layout.update(title_text='PM10 ( µg/m3 )', xaxis_rangeslider_visible=True)
         st.plotly_chart(fig)
         
-    visualize_PM10()
+    # visualize_PM10()
 
 
 if selected == "Visualization":
@@ -135,7 +152,7 @@ if selected == "Forecasting":
     visualize_PM10()
 
 
-if selected == "Anomaly D.":
+if selected == "Anomaly Detection":
     def visualize_PM10():
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=df['Date'], y=df['PM10 ( µg/m3 )']))
