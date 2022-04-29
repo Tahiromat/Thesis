@@ -5,16 +5,18 @@ from streamlit_option_menu import option_menu
 
 from App_Pages.streamlit_page_helper_methods import city_names
 from App_Pages.home_page import home_page
-from App_Pages.visualization_page import line_visualization_page
-from App_Pages.visualization_page import scatter_visualization_page
+from App_Pages.visualization_page import *
+from App_Pages.forecasting_page import *
 
-from Algorithms.Prophet_4_Forecast import prophet_for_forecast
+# from Algorithms.Prophet_4_Forecast import prophet_for_forecast
 
 MAIN_FOLDER_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset'
 CITY_NAMES_FOR_SIDE_BAR = city_names(MAIN_FOLDER_PATH)
 
+
 with st.sidebar:
     selected_city = st.sidebar.selectbox('Select the city you want to review.', CITY_NAMES_FOR_SIDE_BAR)
+
 
 def load_data(city_name):
     return city_name
@@ -35,6 +37,7 @@ footer {visibility: hidden;}
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
+
 with st.sidebar:
     st.markdown("###")
 
@@ -42,13 +45,15 @@ with st.sidebar:
         icons=['house', 'list-task', "list-task", 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
+
 with st.sidebar:
     st.markdown("###")
 
     st.write("Select Forecasting Algorithm")
-    visualization_types = option_menu(None, ["Line", "Scatter"], 
-        icons=['list-task', 'list-task'], 
+    visualization_types = option_menu(None, ["Line", "Scatter", "Histogram"], 
+        icons=['list-task', 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
+
 
 with st.sidebar:
     st.markdown("###")
@@ -58,6 +63,7 @@ with st.sidebar:
         icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
+
 with st.sidebar:
     st.markdown("###")
 
@@ -65,6 +71,7 @@ with st.sidebar:
     anomaly_detetection_algorithms = option_menu(None, ["LSTM", "ARIMA", 'AUTOENCODER'], 
         icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
+
 
 with st.sidebar:
     st.markdown("###")
@@ -74,33 +81,38 @@ with st.sidebar:
         icons=['list-task', 'list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
+
 if selected_page == "Home":
-    st.write(data)
+    # st.write(data)
     home_page()
+
 
 elif selected_page == "Visualization":
 
     if visualization_types == "Line":
         line_visualization_page()
-    else:
+    elif visualization_types == "Scatter":
         scatter_visualization_page()
+    else:
+        histogram_visualization_page()
+
 
 elif selected_page == "Forecasting":
 
     st.title("Forecasting Page")
 
     if forecast_algorithms == "Prophet":
-        st.write("Prophet algorithm has been choosed for forecasting")
-        prophet_for_forecast()
+        prophet_forecasting_page()
 
     elif  forecast_algorithms == "LSTM":
-        st.write("LSTM algorithm has been choosed for forecasting")
+        lstm_forecasting_page()
 
     elif  forecast_algorithms == "ARIMA":
-        st.write("ARIMA algorithm has been choosed for forecasting")
+        arima_forecasting_page()
 
     else :
-        st.write("AUTOENCODER algorithm has been choosed for forecasting")
+        autoencoder_forecasting_page()
+
 
 elif selected_page == 'Anomaly Detection':
     
@@ -114,6 +126,7 @@ elif selected_page == 'Anomaly Detection':
 
     else :
         st.write("AUTOENCODER algorithm has been choosed for anolay detection")
+
 
 else:
 
