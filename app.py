@@ -4,29 +4,14 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 from App_Pages.streamlit_page_helper_methods import city_names
-from App_Pages.home_page import home_page
+from App_Pages.home_page import *
 from App_Pages.visualization_page import *
 from App_Pages.forecasting_page import *
 
-# from Algorithms.Prophet_4_Forecast import prophet_for_forecast
 
 MAIN_FOLDER_PATH = '/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset'
 CITY_NAMES_FOR_SIDE_BAR = city_names(MAIN_FOLDER_PATH)
 
-
-with st.sidebar:
-    selected_city = st.sidebar.selectbox('Select the city you want to review.', CITY_NAMES_FOR_SIDE_BAR)
-
-
-def load_data(city_name):
-    return city_name
-data = load_data(selected_city)
-
-# # From here you will choose data set 
-# df = pd.read_csv('/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset/İstanbul/İstanbulAverageDF.csv')
-# print(df.columns)
-# df = df[:-1]
-# df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d %H:%M:%S.%f')
 
 hide_streamlit_style = """
 <style>
@@ -36,6 +21,10 @@ footer {visibility: hidden;}
 
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
+
+# with st.sidebar:
+#     selected_city = st.sidebar.selectbox('Select the city you want to review.', CITY_NAMES_FOR_SIDE_BAR)
 
 
 with st.sidebar:

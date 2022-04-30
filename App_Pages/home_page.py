@@ -17,40 +17,49 @@ df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d %H:%M:%S.%f')
 cities = []
 stations = []
 
-for city in os.listdir(DATASET_PATH):
-    cities.append(city)
-    cities.sort()
+
 
 def home_page():
     st.title("""Air Quality of Turkey """)
-
-    selected_city = st.selectbox('Select City', cities)
     
-    st.write(selected_city)
+    find_data()
+    
 
 
-    for station in os.listdir(DATASET_PATH + selected_city):
+# !!!!!!!!!!!!!!!!!!!!!!! HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!
+
+
+def find_data():
+    cities.clear()
+    selected_city = st.selectbox('Select City', choose_city(DATASET_PATH))
+    # st.write(selected_city)
+
+    stations.clear()
+    selected_station = st.selectbox('Select Station', choose_station(DATASET_PATH, selected_city))
+    # st.write(selected_station)
+
+    data_path = f"{DATASET_PATH}{selected_city}/{selected_station}"
+    st.write(data_path)
+
+    data = pd.read_csv(data_path)
+    data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d %H:%M:%S.%f')
+
+    st.write(data.head())
+
+
+def choose_city(DATASET_PATH):
+    for city in os.listdir(DATASET_PATH):
+        cities.append(city)
+        cities.sort()
+    return cities
+    
+
+def choose_station(DATASET_PATH, selected_city):
+    for station in os.listdir(DATASET_PATH + selected_city + '/'):
         stations.append(station)
         stations.sort()
-
-    selected_station = st.selectbox('Select Station', stations)
-    st.write(selected_station)
-    stations.clear()
-    # station_path = DATASET_PATH + selected_city + '/' + selected_station
-
-    # st.write(station_path)
-    # stations.clear()
-
-           
-
-
-def find_stations_based_on_cityname():
-    pass
-    
+    return stations
     
 
-
-
-# NOTE :
-    #  When you choose the city then stations need to be created based on that route 
-    # And of the chosing a route need to be created for that specifik choosing
+# NOTE:
+    # Find dataset based on the choises. Choosing wil be on slider side
