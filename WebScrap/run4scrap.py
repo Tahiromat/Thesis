@@ -14,5 +14,3 @@ while True:
         print(f'Downloading {STATION_NAME} data')
         hlp_mthds.run_all_scrap_help_functions(DRIVER, STATION_NAME, DATA_START_DATE)
         print(f'{STATION_NAME} data succesfully downloaded\n')
-
-

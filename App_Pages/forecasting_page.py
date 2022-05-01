@@ -16,18 +16,15 @@ def prophet_forecasting_page():
 
     prophet_forecast(selected_param)
 
-
 def lstm_forecasting_page():
     st.title("LSTM Forecasting")
     selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
     lstm_forecast(selected_param)
 
-
 def arima_forecasting_page():
     st.title("ARIMA Forecasting")
     selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
     arima_forecast(selected_param)
-
 
 def autoencoder_forecasting_page():
     st.title("AUTOENCODER Forecasting")
@@ -43,8 +40,12 @@ def prophet_forecast(forecast_column_name):
     n_years = st.slider("Years of prediction:", 1, 3)
     period = n_years * 365
 
-    df_train = data[['Date',forecast_column_name]]
+    part_of_data = data.loc[data['Date'] < '2021-04-02']
+
+
+    df_train = part_of_data[['Date',forecast_column_name]]
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
+
 
     m = Prophet()
     m.fit(df_train)

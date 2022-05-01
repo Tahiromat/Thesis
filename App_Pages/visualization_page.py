@@ -16,7 +16,6 @@ data = find_data(DATASET_PATH)
 total_column_names = data.columns
 total_column_names = total_column_names[1:]
 
-
 def line_visualization_page():
     selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
     visualize_line_plot(selected_param)
@@ -28,7 +27,6 @@ def scatter_visualization_page():
 def histogram_visualization_page():
     selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
     visualize_histogram_plot(selected_param)
-
 
 # !!!!!!!!!!!!!!!!!!!!!!! HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!
 

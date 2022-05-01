@@ -8,21 +8,17 @@ from App_Pages.anomaly_detection_page import *
 
 DATASET_PATH = 'Dataset/'
 
-
 hide_streamlit_style = """
 <style>
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 </style>
-
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
-
 
 # with st.sidebar:
 #     find_data_path(DATASET_PATH)
     # selected_city = st.sidebar.selectbox('Select the city you want to review.', CITY_NAMES_FOR_SIDE_BAR)
-
 
 with st.sidebar:
     # st.markdown("###")
@@ -30,7 +26,6 @@ with st.sidebar:
     selected_page = option_menu(None, ["Home", "Visualization", "Forecasting", 'Anomaly Detection', 'Blogs'], 
         icons=['house', 'list-task', "list-task", 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
-
 
 with st.sidebar:
     st.markdown("###")
@@ -40,7 +35,6 @@ with st.sidebar:
         icons=['list-task', 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
-
 with st.sidebar:
     st.markdown("###")
 
@@ -48,7 +42,6 @@ with st.sidebar:
     forecast_algorithms = option_menu(None, ["Prophet", "LSTM", "ARIMA", 'AUTOENCODER'], 
         icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
-
 
 with st.sidebar:
     st.markdown("###")
@@ -58,7 +51,6 @@ with st.sidebar:
         icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
-
 with st.sidebar:
     st.markdown("###")
 
@@ -67,11 +59,9 @@ with st.sidebar:
         icons=['list-task', 'list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
-
 if selected_page == "Home":
     # st.write(data)
     home_page()
-
 
 elif selected_page == "Visualization":
 
@@ -86,7 +76,6 @@ elif selected_page == "Visualization":
     else:
         st.title("Histogram Visualization")
         histogram_visualization_page()
-
 
 elif selected_page == "Forecasting":
 
@@ -104,7 +93,6 @@ elif selected_page == "Forecasting":
     else :
         autoencoder_forecasting_page()
 
-
 elif selected_page == 'Anomaly Detection':
     
     st.title("Anomaly Detection Page")
@@ -119,7 +107,6 @@ elif selected_page == 'Anomaly Detection':
     else :
         st.write("Prophet algorithm has been choosed for anolay detection")
         prophet_anomaly_detection_page()
-
 
 else:
 

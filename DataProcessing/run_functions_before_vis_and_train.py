@@ -9,7 +9,7 @@ FILE_DOWNLOADED_PATH = '/home/tahir/Downloads/'
 # First scrapping method will work
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# create_folder_with_uniq_cities(FILE_DOWNLOADED_PATH, MAIN_PATH4DATA)
+create_folder_with_uniq_cities(FILE_DOWNLOADED_PATH, MAIN_PATH4DATA)
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 send_preprocess_scraped_exel2csv_files_dataset_folder(FILE_DOWNLOADED_PATH, MAIN_PATH4DATA)

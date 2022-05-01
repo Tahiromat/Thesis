@@ -28,13 +28,11 @@ def choose_city(DATASET_PATH):
         cities.sort()
     return cities
     
-
 def choose_station(DATASET_PATH, selected_city):
     for station in os.listdir(DATASET_PATH + selected_city + '/'):
         stations.append(station)
         stations.sort()
-    return stations
-    
+    return stations  
 
 # NOTE:
     # Find dataset based on the choises. Choosing wil be on slider side
