@@ -2,44 +2,36 @@ import streamlit as st
 import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
+from App_Pages.generate_data_basedon_selections import find_data
 
-df = pd.read_csv('/home/tahir/Documents/DataScience/HavaKalitesiAnomaliTespiti/Dataset/İstanbul/İstanbulAverageDF.csv')
-# df = df[:-1]
-df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d %H:%M:%S.%f')
+DATASET_PATH = 'Dataset/'
 
+data = find_data(DATASET_PATH)
+total_column_names = data.columns
+total_column_names = total_column_names[1:]
 
 def prophet_forecasting_page():
     st.title("Prophet Forecasting")
-    
-    params = df.columns[1:]
-    selected_param = st.selectbox('Select aparameter to forecast', params)
+    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
 
     prophet_forecast(selected_param)
 
 
 def lstm_forecasting_page():
     st.title("LSTM Forecasting")
-    
-    params = df.columns[1:]
-    selected_param = st.selectbox('Select aparameter to forecast', params)
-
+    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
     lstm_forecast(selected_param)
 
 
 def arima_forecasting_page():
     st.title("ARIMA Forecasting")
-    
-    params = df.columns[1:]
-    selected_param = st.selectbox('Select aparameter to forecast', params)
-
+    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
     arima_forecast(selected_param)
 
 
 def autoencoder_forecasting_page():
     st.title("AUTOENCODER Forecasting")
-    
-    params = df.columns[1:]
-    selected_param = st.selectbox('Select aparameter to forecast', params)
+    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
 
     autoencoder_forecast(selected_param)
 
@@ -51,7 +43,7 @@ def prophet_forecast(forecast_column_name):
     n_years = st.slider("Years of prediction:", 1, 3)
     period = n_years * 365
 
-    df_train = df[['Date',forecast_column_name]]
+    df_train = data[['Date',forecast_column_name]]
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
 
     m = Prophet()

@@ -39,6 +39,12 @@
 
 ******************************************************************************************************************************************************  
 # Current Works
-- Solve The problem if the station name in stations list is emty for exel file into web page then pass it and continue by index to work.
-- Check if new downloaded file already exist under the city folder then concate new downloaded one with the old one 
-- Create a method to update dataset for each 2 hour
+- [PyCaret Anomaly Detection](https://towardsdatascience.com/time-series-anomaly-detection-with-pycaret-706a6e2b2427)
+
+- [Prophet Anomaly Detection](https://www.analyticsvidhya.com/blog/2021/12/anomaly-detection-model-using-facebook-prophet/)
+
+- [LSTM Anomaly Detection](https://towardsdatascience.com/time-series-of-price-anomaly-detection-with-lstm-11a12ba4f6d9)
+
+
+
+- (Zaman serisinin son yarım dönemini datasetten çıkar ve tahmini yaptır. Daha sonra tam dataset üzerinden tahmini baka grafik üzerinde göster. her bir algoritmayi bir son dönem bir de tam dönem üzerinden tahmin yapttır iki grafik ver)
