@@ -21,6 +21,7 @@
 - $ git commit -m 'Commit'
 - $ git remote add origin <- write the link that you created for new repository ->
 - $ git push origin master
+- $ git push -f origin master -------> To force push the repo
 - $ rm -rf .git -------> For re-init your work to another repo; then turn to $ git init back from another folder.
 - 
 - TO UPDATE EXISTING FILES IN REPO
@@ -38,6 +39,7 @@
 - [For the time series algorithms](https://www.youtube.com/watch?v=7MhZ2DDg89Y)
 
 ******************************************************************************************************************************************************  
+
 # Current Works
 - [PyCaret Anomaly Detection](https://towardsdatascience.com/time-series-anomaly-detection-with-pycaret-706a6e2b2427)
 
