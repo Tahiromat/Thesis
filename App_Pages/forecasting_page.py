@@ -40,10 +40,10 @@ def prophet_forecast(forecast_column_name):
     n_years = st.slider("Years of prediction:", 1, 3)
     period = n_years * 365
 
-    part_of_data = data.loc[data['Date'] < '2021-04-02']
+    # part_of_data = data.loc[data['Date'] < '2021-04-02']
 
 
-    df_train = part_of_data[['Date',forecast_column_name]]
+    df_train = data[['Date',forecast_column_name]]
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
 
 

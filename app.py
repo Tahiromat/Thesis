@@ -17,7 +17,7 @@ footer {visibility: hidden;}
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 # with st.sidebar:
-#     find_data_path(DATASET_PATH)
+#     find_data(DATASET_PATH)
     # selected_city = st.sidebar.selectbox('Select the city you want to review.', CITY_NAMES_FOR_SIDE_BAR)
 
 with st.sidebar:
@@ -101,11 +101,9 @@ elif selected_page == 'Anomaly Detection':
         lstm_anomaly_detection_page()
         
     elif  anomaly_detetection_algorithms == "PyCaret":
-        st.write("PyCaret algorithm has been choosed for anolay detection")
         pycaret_anomaly_detection_page()
 
     else :
-        st.write("Prophet algorithm has been choosed for anolay detection")
         prophet_anomaly_detection_page()
 
 else:
