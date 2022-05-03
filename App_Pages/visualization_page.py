@@ -10,9 +10,13 @@ import plotly.express as px
 
 from App_Pages.generate_data_basedon_selections import find_data
 
-DATASET_PATH = 'Dataset/'
+# DATASET_PATH = 'Dataset/'
 
-data = find_data(DATASET_PATH)
+# data = find_data(DATASET_PATH)
+# total_column_names = data.columns
+# total_column_names = total_column_names[1:]
+
+data = pd.read_csv('Dataset/İstanbul/İstanbulAverageDF.csv')
 total_column_names = data.columns
 total_column_names = total_column_names[1:]
 

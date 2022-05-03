@@ -4,7 +4,7 @@ from plotly import graph_objs as go
 
 from App_Pages.generate_data_basedon_selections import find_data
 
-DATASET_PATH = 'Dataset/'
+# DATASET_PATH = 'Dataset/'
 
 data = pd.read_csv('Dataset/İstanbul/İstanbulAverageDF.csv')
 total_column_names = data.columns
