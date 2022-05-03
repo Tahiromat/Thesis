@@ -61,28 +61,28 @@ with st.sidebar:
 
 if selected_page == "Home":
     # st.write(data)
-    home_page()
+    home_page(st)
 
 elif selected_page == "Visualization":
 
     if visualization_types == "Line":
         st.title("Line Visualization")
-        line_visualization_page()
+        line_visualization_page(st)
 
     elif visualization_types == "Scatter":
         st.title("Scatter Visualization")
-        scatter_visualization_page()
+        scatter_visualization_page(st)
 
     else:
         st.title("Histogram Visualization")
-        histogram_visualization_page()
+        histogram_visualization_page(st)
 
 elif selected_page == "Forecasting":
 
     st.title("Forecasting Page")
 
     if forecast_algorithms == "Prophet":
-        prophet_forecasting_page()
+        prophet_forecasting_page(st)
 
     elif  forecast_algorithms == "LSTM":
         lstm_forecasting_page()
@@ -98,13 +98,13 @@ elif selected_page == 'Anomaly Detection':
     st.title("Anomaly Detection Page")
 
     if  anomaly_detetection_algorithms == "LSTM":
-        lstm_anomaly_detection_page()
+        lstm_anomaly_detection_page(st)
         
     elif  anomaly_detetection_algorithms == "PyCaret":
-        pycaret_anomaly_detection_page()
+        pycaret_anomaly_detection_page(st)
 
     else :
-        prophet_anomaly_detection_page()
+        prophet_anomaly_detection_page(st)
 
 else:
 
