@@ -5,6 +5,7 @@ from App_Pages.home_page import *
 from App_Pages.visualization_page import *
 from App_Pages.forecasting_page import *
 from App_Pages.anomaly_detection_page import *
+from App_Pages.generate_data_basedon_selections import *
 
 DATASET_PATH = 'Dataset/'
 
@@ -16,9 +17,12 @@ footer {visibility: hidden;}
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
-# with st.sidebar:
-#     find_data(DATASET_PATH)
-    # selected_city = st.sidebar.selectbox('Select the city you want to review.', CITY_NAMES_FOR_SIDE_BAR)
+
+with  st.sidebar:
+    data = find_data(st, DATASET_PATH)
+    total_column_names = data.columns
+    total_column_names = total_column_names[1:]
+
 
 with st.sidebar:
     # st.markdown("###")
@@ -26,6 +30,7 @@ with st.sidebar:
     selected_page = option_menu(None, ["Home", "Visualization", "Forecasting", 'Anomaly Detection', 'Blogs'], 
         icons=['house', 'list-task', "list-task", 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
+
 
 with st.sidebar:
     st.markdown("###")
@@ -35,6 +40,7 @@ with st.sidebar:
         icons=['list-task', 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
+
 with st.sidebar:
     st.markdown("###")
 
@@ -42,6 +48,7 @@ with st.sidebar:
     forecast_algorithms = option_menu(None, ["Prophet", "LSTM", "ARIMA", 'AUTOENCODER'], 
         icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
+
 
 with st.sidebar:
     st.markdown("###")
@@ -51,6 +58,7 @@ with st.sidebar:
         icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
+
 with st.sidebar:
     st.markdown("###")
 
@@ -59,43 +67,58 @@ with st.sidebar:
         icons=['list-task', 'list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
+
 if selected_page == "Home":
-    # st.write(data)
-    home_page(st)
+    st.title("""Air Quality of Turkey """)
+elif selected_page == "Visualization":
+    st.title("Visualization")
+elif selected_page == "Forecasting":
+    st.title("Forecasting")
+elif selected_page == 'Anomaly Detection':
+    st.title("Anomaly Detection")
+else:
+    st.title("Blogs")
+
+
+if selected_page == "Home":
+    home_page(st, data)
+
 
 elif selected_page == "Visualization":
+    # selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
 
     if visualization_types == "Line":
-        st.title("Line Visualization")
-        line_visualization_page(st)
+        for param in total_column_names:
+            visualize_line_plot(st, data, param)
 
     elif visualization_types == "Scatter":
-        st.title("Scatter Visualization")
-        scatter_visualization_page(st)
+        for param in total_column_names:
+            visualize_scatter_plot(st, data, param)
 
     else:
-        st.title("Histogram Visualization")
-        histogram_visualization_page(st)
+        for param in total_column_names:
+            visualize_histogram_plot(st, data, param)
+
 
 elif selected_page == "Forecasting":
-
-    st.title("Forecasting Page")
+    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
 
     if forecast_algorithms == "Prophet":
-        prophet_forecasting_page(st)
+        # for param in total_column_names:
+        prophet_forecast(st, data, selected_param)
 
     elif  forecast_algorithms == "LSTM":
-        lstm_forecasting_page()
+        lstm_forecast(st)
 
     elif  forecast_algorithms == "ARIMA":
-        arima_forecasting_page()
+        arima_forecast(st)
 
     else :
-        autoencoder_forecasting_page()
+        autoencoder_forecast(st)
+
 
 elif selected_page == 'Anomaly Detection':
-    
-    st.title("Anomaly Detection Page")
+    # selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
 
     if  anomaly_detetection_algorithms == "LSTM":
         lstm_anomaly_detection_page(st)

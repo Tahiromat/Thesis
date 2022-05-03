@@ -7,7 +7,7 @@ import os
 cities = []
 stations = []
 
-def find_data(DATASET_PATH):
+def find_data(st, DATASET_PATH):
     cities.clear()
     selected_city = st.selectbox('Select City', choose_city(DATASET_PATH))
 
@@ -36,3 +36,19 @@ def choose_station(DATASET_PATH, selected_city):
 
 # NOTE:
     # Find dataset based on the choises. Choosing wil be on slider side
+
+
+# DATASET_PATH = 'Dataset/'
+
+# data = find_data(DATASET_PATH)
+# total_column_names = data.columns
+# total_column_names = total_column_names[1:]
+
+
+
+
+#  data = pd.read_csv(data_path, index_col=False)
+    
+#     data['Date'] = pd.to_datetime(data['Date'])
+#     data = data.set_index(data['Date'])
+#     data = data.resample('D').mean()

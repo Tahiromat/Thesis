@@ -1,52 +1,17 @@
-import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
-from App_Pages.generate_data_basedon_selections import find_data
-
-# DATASET_PATH = 'Dataset/'
-
-# data = find_data(DATASET_PATH)
-# total_column_names = data.columns
-# total_column_names = total_column_names[1:]
-
-
-data = pd.read_csv('Dataset/İstanbul/İstanbulAverageDF.csv')
-total_column_names = data.columns
-total_column_names = total_column_names[1:]
-
-def prophet_forecasting_page(st):
-    st.title("Prophet Forecasting")
-    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
-
-    prophet_forecast(st, selected_param)
-
-def lstm_forecasting_page(st):
-    st.title("LSTM Forecasting")
-    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
-    lstm_forecast(selected_param)
-
-def arima_forecasting_page(st):
-    st.title("ARIMA Forecasting")
-    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
-    arima_forecast(selected_param)
-
-def autoencoder_forecasting_page(st):
-    st.title("AUTOENCODER Forecasting")
-    selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
-
-    autoencoder_forecast(selected_param)
-
 
 # !!!!!!!!!!!!!!!!!!!!!!! HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!
 
 
-def prophet_forecast(st, forecast_column_name):
+def prophet_forecast(st, data, forecast_column_name):
+
     n_years = st.slider("Years of prediction:", 1, 3)
     period = n_years * 365
 
     # part_of_data = data.loc[data['Date'] < '2021-04-02']
 
-    df_train = data[['Date',forecast_column_name]]    
+    df_train = data[['Date',forecast_column_name]]     
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
 
     m = Prophet()
@@ -58,13 +23,16 @@ def prophet_forecast(st, forecast_column_name):
     st.plotly_chart(fig1)
 
 
-def lstm_forecast(forecast_column_name):
+def lstm_forecast(st):
+    st.title("LSTM Forecasting")
     pass
 
 
-def arima_forecast(forecast_column_name):
+def arima_forecast(st):
+    st.title("ARIMA Forecasting")
     pass
 
 
-def autoencoder_forecast(forecast_column_name):
+def autoencoder_forecast(st):
+    st.title("AUTOENCODER Forecasting")
     pass
