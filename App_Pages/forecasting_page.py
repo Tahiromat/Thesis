@@ -46,10 +46,8 @@ def prophet_forecast(st, forecast_column_name):
 
     # part_of_data = data.loc[data['Date'] < '2021-04-02']
 
-
-    df_train = data[['Date',forecast_column_name]]
+    df_train = data[['Date',forecast_column_name]]    
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
-
 
     m = Prophet()
     m.fit(df_train)
