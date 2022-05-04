@@ -2,23 +2,24 @@ import streamlit as st
 import pandas as pd
 import os
 
-# DATASET_PATH = 'Dataset/'
-
 cities = []
 stations = []
 
 def find_data(st, DATASET_PATH):
     cities.clear()
     selected_city = st.selectbox('Select City', choose_city(DATASET_PATH))
-
+    st.markdown("###")  
     stations.clear()
     selected_station = st.selectbox('Select Station', choose_station(DATASET_PATH, selected_city))
 
     data_path = f"{DATASET_PATH}{selected_city}/{selected_station}"
 
     data = pd.read_csv(data_path)
-    data['Date'] = pd.to_datetime( data['Date'])
+    data = data.loc[data['Date'] > '2022-03-03']
 
+    data['Date'] = pd.to_datetime(data['Date'])
+    data.reset_index(drop=True, inplace=True)
+    
     return data
 
 
