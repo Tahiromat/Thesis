@@ -15,7 +15,7 @@ def find_data(st, DATASET_PATH):
     data_path = f"{DATASET_PATH}{selected_city}/{selected_station}"
 
     data = pd.read_csv(data_path)
-    data = data.loc[data['Date'] > '2022-03-03']
+    data = data.loc[data['Date'] >= '2022-03-01']
     
     data['Date'] = pd.to_datetime(data['Date'])
     data.reset_index(drop=True, inplace=True)

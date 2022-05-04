@@ -10,8 +10,6 @@ from App_Pages.generate_data_basedon_selections import *
 DATASET_PATH = 'Dataset/'
 st.set_page_config(page_title="Air Quality Analysis", page_icon="❗", layout="wide")
 
-
-
 st.markdown("""
 <style>
     [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {width: 350px;}
@@ -35,6 +33,7 @@ with  st.sidebar:
     data = find_data(st, DATASET_PATH)
     total_column_names = data.columns
     total_column_names = total_column_names[1:]
+
 
 
 with st.sidebar:

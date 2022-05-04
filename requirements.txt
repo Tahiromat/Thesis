@@ -1,6 +1,5 @@
 fbprophet==0.7.1
 matplotlib==3.1.2
-numpy==1.17.4
 pandas==0.25.3
 plotly==4.4.1
 seaborn==0.10.0
