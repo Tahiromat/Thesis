@@ -16,7 +16,7 @@ def find_data(st, DATASET_PATH):
 
     data = pd.read_csv(data_path)
     data = data.loc[data['Date'] > '2022-03-03']
-
+    
     data['Date'] = pd.to_datetime(data['Date'])
     data.reset_index(drop=True, inplace=True)
     
