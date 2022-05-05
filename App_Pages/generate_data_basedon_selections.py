@@ -13,15 +13,8 @@ def find_data(st, DATASET_PATH):
     selected_station = st.selectbox('Select Station', choose_station(DATASET_PATH, selected_city))
 
     data_path = f"{DATASET_PATH}{selected_city}/{selected_station}"
-
-    data = pd.read_csv(data_path)
     
-    data = data.loc[data['Date'] >= '2022-03-01']
-    
-    data['Date'] = pd.to_datetime(data['Date'])
-    # data.reset_index(drop=True, inplace=True)
-    
-    return data
+    return data_path
 
 
 def choose_city(DATASET_PATH):

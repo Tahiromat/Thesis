@@ -18,10 +18,7 @@ with  st.sidebar:
     st.title("Choose Type")
     st.markdown("This is an open source project which can be downloaded for free from github (requires developer experience to set up and configure)")
     st.markdown("#")
-    data = find_data(st, DATASET_PATH)
-    total_column_names = data.columns
-    total_column_names = total_column_names[1:]
-
+    data_path = find_data(st, DATASET_PATH)
 
 
 with st.sidebar:
@@ -80,25 +77,44 @@ else:
 
 
 if selected_page == "Home":
+    data = pd.read_csv(data_path, index_col='Date')
+    data.index = pd.to_datetime(data.index)
+    data = data.loc[data.index >= '2022-03-20']
+
     home_page(st, data)
+    st.markdown('#')
+    st.markdown('#')
+    st.markdown('#')
+    st.line_chart(data)
+
 
 
 elif selected_page == "Visualization":
+    data = pd.read_csv(data_path, index_col='Date')
+    data.index = pd.to_datetime(data.index)
+    data = data.loc[data.index >= '2022-03-25']
 
     if visualization_types == "Line":
-        for param in total_column_names:
+        for param in data.columns:
             visualize_line_plot(st, data, param)
 
     elif visualization_types == "Scatter":
-        for param in total_column_names:
+        for param in data.columns:
             visualize_scatter_plot(st, data, param)
 
     else:
-        for param in total_column_names:
+        for param in data.columns:
             visualize_histogram_plot(st, data, param)
 
 
 elif selected_page == "Forecasting":
+    data = pd.read_csv(data_path)
+
+    data = data.loc[data['Date'] >= '2022-03-01']
+    data['Date'] = pd.to_datetime(data['Date'])
+    data.reset_index(drop=True, inplace=True)
+    total_column_names = data.columns
+    total_column_names = total_column_names[1:]
 
     if forecast_algorithms == "Prophet":
         for param in total_column_names:
