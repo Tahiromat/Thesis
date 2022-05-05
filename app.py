@@ -80,6 +80,7 @@ if selected_page == "Home":
     data = pd.read_csv(data_path, index_col='Date')
     data.index = pd.to_datetime(data.index)
     data = data.loc[data.index >= '2022-03-20']
+    data = data.resample('D').mean()
 
     home_page(st, data)
     st.markdown('#')
@@ -92,7 +93,8 @@ if selected_page == "Home":
 elif selected_page == "Visualization":
     data = pd.read_csv(data_path, index_col='Date')
     data.index = pd.to_datetime(data.index)
-    data = data.loc[data.index >= '2022-03-25']
+    data = data.loc[data.index >= '2022-03-01']
+    data = data.resample('D').mean()
 
     if visualization_types == "Line":
         for param in data.columns:

@@ -4,10 +4,12 @@ import seaborn as sns
 from statsmodels.graphics.tsaplots import plot_acf
 
 
-df = pd.read_csv('Dataset/Adana/AdanaAverageDF.csv', index_col='Date')
-df.index = pd.to_datetime(df.index)
+data = pd.read_csv('Dataset/Adana/AdanaAverageDF.csv', index_col='Date')
+data.index = pd.to_datetime(data.index)
+data = data.loc[data.index >= '2022-03-01']
+data = data.resample('D').mean()
 
-df.plot()
+data.plot()
 plt.show()
-print(df.columns)
-print(type(df.index))
+print(data.columns)
+print(type(data.index))
