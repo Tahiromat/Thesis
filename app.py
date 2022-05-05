@@ -7,24 +7,12 @@ from App_Pages.forecasting_page import *
 from App_Pages.anomaly_detection_page import *
 from App_Pages.generate_data_basedon_selections import *
 
-DATASET_PATH = 'Dataset/'
 st.set_page_config(page_title="Air Quality Analysis", page_icon="❗", layout="wide")
-
-st.markdown("""
-<style>
-    [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {width: 350px;}
-</style>
-""", unsafe_allow_html=True)
-
-
-hide_streamlit_style = """
-<style>
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-</style>
-"""
+st.markdown(""" <style> [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {width: 350px;} </style> """, unsafe_allow_html=True)
+hide_streamlit_style = """ <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} </style> """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
+DATASET_PATH = 'Dataset/'
 
 with  st.sidebar:
     st.title("Choose Type")
@@ -96,7 +84,6 @@ if selected_page == "Home":
 
 
 elif selected_page == "Visualization":
-    # selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
 
     if visualization_types == "Line":
         for param in total_column_names:
@@ -112,7 +99,6 @@ elif selected_page == "Visualization":
 
 
 elif selected_page == "Forecasting":
-    # selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
 
     if forecast_algorithms == "Prophet":
         for param in total_column_names:
@@ -132,7 +118,6 @@ elif selected_page == "Forecasting":
 
 
 elif selected_page == 'Anomaly Detection':
-    # selected_param = st.selectbox("Select Parameter you want to visualize", total_column_names)
 
     if  anomaly_detetection_algorithms == "LSTM":
         lstm_anomaly_detection_page(st)
