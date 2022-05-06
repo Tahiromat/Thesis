@@ -1,30 +1,69 @@
+import math
+import numpy as np
 from fbprophet import Prophet
+from plotly import graph_objs as go
 from fbprophet.plot import plot_plotly
-
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense, LSTM
 # !!!!!!!!!!!!!!!!!!!!!!! HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!
 
 
 def prophet_forecast(st, data, forecast_column_name):
-
+    # st.write("[INFO ** PROBLEM SHOULD BE SOLVED TO RUN PROPHET ALGORITHM] >>> AttributeError: 'StanModel' object has no attribute 'fit_class'")
     n_years = 1
     period = n_years * 10
-
     df_train = data[['Date', forecast_column_name]]     
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
-
     m = Prophet()
     m.fit(df_train)
     future = m.make_future_dataframe(periods=period)
     forecast = m.predict(future)
-
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1)
 
 
-def lstm_forecast(st):
-    st.title("LSTM Forecasting")
-    pass
-
+def lstm_forecast(st, data, forecast_parameter):
+    data = data.filter([forecast_parameter])
+    dataset = data.values
+    training_data_len = math.ceil(len(dataset) * .8)
+    scaler = MinMaxScaler(feature_range=(0, 1))
+    scaled_data = scaler.fit_transform(dataset)
+    train_data = scaled_data[0:training_data_len, :]
+    x_train = []
+    y_train = []
+    for i in range(60, len(train_data)):
+        x_train.append(train_data[i-60:i, 0])
+        y_train.append(train_data[i, 0])
+    x_train, y_train = np.array(x_train), np.array(y_train)
+    x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
+    model = Sequential()
+    model.add(LSTM(50, return_sequences=True, input_shape=(x_train.shape[1], 1)))
+    model.add(LSTM(50, return_sequences=False))
+    model.add(Dense(25))
+    model.add(Dense(1))
+    model.compile(optimizer='adam', loss='mean_squared_error')
+    model.fit(x_train, y_train, batch_size=128, epochs=3)
+    test_data = scaled_data[training_data_len - 60 : , :]
+    x_test = []
+    y_test = dataset[training_data_len : , :]
+    for i in range(60, len(test_data)):
+        x_test.append(test_data[i-60 : i, 0])
+    x_test = np.array(x_test)
+    x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
+    predictions = model.predict(x_test)
+    predictions = scaler.inverse_transform(predictions)
+    rms = np.sqrt(np.mean(predictions - y_test)**2)
+    train = data[:training_data_len]
+    valid = data[training_data_len:]
+    valid['Predictions'] = predictions
+    fig = go.Figure()
+    fig.add_trace(go.Line(x=train.index, y=train[forecast_parameter]))
+    fig.add_trace(go.Line(x=valid.index, y=valid[forecast_parameter]))
+    fig.add_trace(go.Line(x=valid.index, y=valid['Predictions']))
+    fig.layout.update(title_text=forecast_parameter, xaxis_rangeslider_visible=True, width=1500, height=600)
+    st.plotly_chart(fig)
+    
 
 def arima_forecast(st):
     st.title("ARIMA Forecasting")

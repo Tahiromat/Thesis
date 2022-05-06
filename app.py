@@ -32,8 +32,8 @@ with st.sidebar:
     st.markdown("#")
 
     st.write("Select Visualization Type")
-    visualization_types = option_menu(None, ["Line", "Scatter", "Histogram"], 
-        icons=['list-task', 'list-task', 'list-task'], 
+    visualization_types = option_menu(None, ["Line", "Scatter", "Area Chart", "Histogram"], 
+        icons=['list-task', 'list-task', 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
 
@@ -81,10 +81,10 @@ if selected_page == "Home":
     data.index = pd.to_datetime(data.index)
     data = data.loc[data.index >= '2022-03-20']
     data = data.resample('D').mean()
-
     home_page(st, data)
     st.markdown('#')
     st.markdown('#')
+    st.area_chart(data)
     st.markdown('#')
     st.line_chart(data)
 
@@ -93,7 +93,7 @@ if selected_page == "Home":
 elif selected_page == "Visualization":
     data = pd.read_csv(data_path, index_col='Date')
     data.index = pd.to_datetime(data.index)
-    data = data.loc[data.index >= '2022-03-01']
+    data = data.loc[data.index >= '2020-01-01']
     data = data.resample('D').mean()
 
     if visualization_types == "Line":
@@ -103,6 +103,10 @@ elif selected_page == "Visualization":
     elif visualization_types == "Scatter":
         for param in data.columns:
             visualize_scatter_plot(st, data, param)
+
+    elif visualization_types == "Area Chart":
+        for param in data.columns:
+            visualize_area_chart(st, data, param)
 
     else:
         for param in data.columns:
@@ -123,13 +127,22 @@ elif selected_page == "Forecasting":
             col1, col2 = st.columns(2)
             st.markdown('#')
             with col1:
-                visualize_line_plot(st, data, param)
-            # st.write(f'Forecasting for {param} Parameter')
+                pass
+                # visualize_line_plot(st, data, param)
             with col2:
+
                 prophet_forecast(st, data, param)
 
     elif  forecast_algorithms == "LSTM":
-        lstm_forecast(st)
+        data = pd.read_csv(data_path, index_col='Date')
+        # df = pd.read_csv(DATA_PATH, index_col='Date')
+        total_columns =  data.columns
+        data.index = pd.to_datetime(data.index)
+        data = data.loc[data.index >= '2020-01-01']
+        data = data.resample('D').mean()
+
+        for param in total_columns:
+            lstm_forecast(st, data, param)
 
     else :
         arima_forecast(st)
