@@ -1,10 +1,10 @@
 import math
 import numpy as np
 import pandas as pd
-from fbprophet import Prophet
+from prophet import Prophet
 import statsmodels.api as smapi
 from plotly import graph_objs as go
-from fbprophet.plot import plot_plotly
+from prophet.plot import plot_plotly
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, LSTM
@@ -12,7 +12,6 @@ from tensorflow.python.keras.layers import Dense, LSTM
 
 
 def prophet_forecast(st, data, forecast_column_name):
-    st.write("[INFO ** PROBLEM SHOULD BE SOLVED TO RUN PROPHET ALGORITHM] >>> AttributeError: 'StanModel' object has no attribute 'fit_class'")
     n_years = 1
     period = n_years * 10
     df_train = data[['Date', forecast_column_name]]     

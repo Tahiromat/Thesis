@@ -128,7 +128,7 @@ elif selected_page == "Forecasting":
             st.markdown('#')
             with col1:
                 pass
-                # visualize_line_plot(st, data, param)
+                visualize_line_plot(st, data, param)
             with col2:
 
                 prophet_forecast(st, data, param)
