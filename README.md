@@ -49,4 +49,21 @@
 
 
 
-- (Zaman serisinin son yarım dönemini datasetten çıkar ve tahmini yaptır. Daha sonra tam dataset üzerinden tahmini baka grafik üzerinde göster. her bir algoritmayi bir son dönem bir de tam dönem üzerinden tahmin yapttır iki grafik ver)
+
+
+
+
+******************************************************************************************************************************************************  
+
+# Referance Links For Forecast
+- [PROPHET Forecasting](https://medium.com/analytics-vidhya/time-series-analysis-a-quick-tour-of-fbprophet-cbbfbffdf9d8)
+- [LSTM Forecasting](https://www.youtube.com/watch?v=QIUxPv5PJOY)
+- [LSTM Forecasting](https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/)#Alternative link 
+- [ARIMA Forecasting](https://www.youtube.com/watch?v=JMT1eGJ9c2M) 
+- [ARIMA Forecasting](https://www.analyticsvidhya.com/blog/2020/10/how-to-create-an-arima-model-for-time-series-forecasting-in-python/)#Alternative link 
+
+# Referance Links For Anomaly Detection
+- [LSTM Anomaly Detection](https://towardsdatascience.com/time-series-of-price-anomaly-detection-with-lstm-11a12ba4f6d9)
+- [LSTM Anomaly Detection](https://curiousily.com/posts/anomaly-detection-in-time-series-with-lstms-using-keras-in-python/) #Alternative link 
+- [PYCARET Anomaly Detection](https://towardsdatascience.com/time-series-anomaly-detection-with-pycaret-706a6e2b2427)
+- [PROPHET Anomaly Detection](https://www.analyticsvidhya.com/blog/2021/12/anomaly-detection-model-using-facebook-prophet/)

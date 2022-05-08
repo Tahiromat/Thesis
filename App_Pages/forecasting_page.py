@@ -8,8 +8,6 @@ from prophet.plot import plot_plotly
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, LSTM
-# !!!!!!!!!!!!!!!!!!!!!!! HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!
-
 
 def prophet_forecast(st, data, forecast_column_name):
     n_years = 1
@@ -22,7 +20,6 @@ def prophet_forecast(st, data, forecast_column_name):
     forecast = m.predict(future)
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1)
-
 
 def lstm_forecast(st, data, forecast_parameter):
     data = data.filter([forecast_parameter])
@@ -65,7 +62,6 @@ def lstm_forecast(st, data, forecast_parameter):
     fig.layout.update(title_text=forecast_parameter, xaxis_rangeslider_visible=True, width=1500, height=600)
     st.plotly_chart(fig)
     
-
 def arima_forecast(st, data, forecasted_param):
     df = data[[forecasted_param]].copy()
     n = int(len(df) * 0.8)
@@ -87,4 +83,3 @@ def arima_forecast(st, data, forecasted_param):
     # fig.add_trace(go.Line(x=valid.index, y=valid['Predictions']))
     fig.layout.update(title_text=forecasted_param, xaxis_rangeslider_visible=True, width=1500, height=600)
     st.plotly_chart(fig)
-

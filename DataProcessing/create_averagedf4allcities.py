@@ -1,8 +1,8 @@
 import os
-import pandas as pd
 import time
-import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT CHANGE THAT METHOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def __create_new_df_from_mean_of_subcities(main_path, city_name):
