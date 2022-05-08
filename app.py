@@ -138,14 +138,20 @@ elif selected_page == "Forecasting":
         # df = pd.read_csv(DATA_PATH, index_col='Date')
         total_columns =  data.columns
         data.index = pd.to_datetime(data.index)
-        data = data.loc[data.index >= '2020-01-01']
+        data = data.loc[data.index >= '2021-01-01']
         data = data.resample('D').mean()
 
         for param in total_columns:
             lstm_forecast(st, data, param)
 
     else :
-        arima_forecast(st)
+        data = pd.read_csv(data_path, index_col='Date')
+        data.index = pd.to_datetime(data.index)
+        total_columns = data.columns
+        data = data.loc[data.index >= '2020-01-01']
+        data = data.resample('D').mean()
+        for param in data.columns:
+            arima_forecast(st, data, param)
 
 
 elif selected_page == 'Anomaly Detection':

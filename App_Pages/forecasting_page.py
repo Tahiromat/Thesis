@@ -1,6 +1,8 @@
 import math
 import numpy as np
+import pandas as pd
 from fbprophet import Prophet
+import statsmodels.api as smapi
 from plotly import graph_objs as go
 from fbprophet.plot import plot_plotly
 from sklearn.preprocessing import MinMaxScaler
@@ -10,14 +12,14 @@ from tensorflow.python.keras.layers import Dense, LSTM
 
 
 def prophet_forecast(st, data, forecast_column_name):
-    # st.write("[INFO ** PROBLEM SHOULD BE SOLVED TO RUN PROPHET ALGORITHM] >>> AttributeError: 'StanModel' object has no attribute 'fit_class'")
+    st.write("[INFO ** PROBLEM SHOULD BE SOLVED TO RUN PROPHET ALGORITHM] >>> AttributeError: 'StanModel' object has no attribute 'fit_class'")
     n_years = 1
     period = n_years * 10
     df_train = data[['Date', forecast_column_name]]     
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
     m = Prophet()
     m.fit(df_train)
-    future = m.make_future_dataframe(periods=period)
+    future = m.make_future_dataframe(period)
     forecast = m.predict(future)
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1)
@@ -43,7 +45,7 @@ def lstm_forecast(st, data, forecast_parameter):
     model.add(Dense(25))
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mean_squared_error')
-    model.fit(x_train, y_train, batch_size=128, epochs=3)
+    model.fit(x_train, y_train, batch_size=128, epochs=2)
     test_data = scaled_data[training_data_len - 60 : , :]
     x_test = []
     y_test = dataset[training_data_len : , :]
@@ -65,7 +67,25 @@ def lstm_forecast(st, data, forecast_parameter):
     st.plotly_chart(fig)
     
 
-def arima_forecast(st):
-    st.title("ARIMA Forecasting")
-    pass
+def arima_forecast(st, data, forecasted_param):
+    df = data[[forecasted_param]].copy()
+    n = int(len(df) * 0.8)
+    train = df[forecasted_param][:n]
+    test = df[forecasted_param][n:]
+    model = smapi.tsa.arima.ARIMA(train, order=(6, 1, 3))
+    # model = ARIMA(train, order=(6, 1, 3))
+    result = model.fit()
+    step = 30
+    fc = result.forecast(step, alpha=0.01)
+    # fc, se, conf = result.forecast(step, alpha=0.05)
+    fc = pd.Series(fc, index=test[:step].index)
+    # lower = pd.Series(conf[:, 0], index=test[:step].index)
+    # upper = pd.Series(conf[:, 1], index=test[:step].index)
+    fig = go.Figure()
+    fig.add_trace(go.Line(x=df.index, y=df[forecasted_param]))
+    fig.add_trace(go.Line(x=test.index, y=test[:step]))
+    fig.add_trace(go.Line(x=fc.index, y = fc))
+    # fig.add_trace(go.Line(x=valid.index, y=valid['Predictions']))
+    fig.layout.update(title_text=forecasted_param, xaxis_rangeslider_visible=True, width=1500, height=600)
+    st.plotly_chart(fig)
 
