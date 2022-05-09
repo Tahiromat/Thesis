@@ -12,6 +12,9 @@ from tensorflow.python.keras.layers import Dense, LSTM
 def prophet_forecast(st, data, forecast_column_name):
     n_years = 1
     period = n_years * 10
+    data = data.loc[data['Date'] >= '2022-03-01']
+    data['Date'] = pd.to_datetime(data['Date'])
+    data.reset_index(drop=True, inplace=True)
     df_train = data[['Date', forecast_column_name]]     
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
     m = Prophet()
@@ -22,6 +25,9 @@ def prophet_forecast(st, data, forecast_column_name):
     st.plotly_chart(fig1)
 
 def lstm_forecast(st, data, forecast_parameter):
+    data.index = pd.to_datetime(data.index)
+    data = data.loc[data.index >= '2021-01-01']
+    data = data.resample('D').mean()
     data = data.filter([forecast_parameter])
     dataset = data.values
     training_data_len = math.ceil(len(dataset) * .8)
@@ -63,6 +69,9 @@ def lstm_forecast(st, data, forecast_parameter):
     st.plotly_chart(fig)
     
 def arima_forecast(st, data, forecasted_param):
+    data.index = pd.to_datetime(data.index)
+    data = data.loc[data.index >= '2020-01-01']
+    data = data.resample('D').mean()
     df = data[[forecasted_param]].copy()
     n = int(len(df) * 0.8)
     train = df[forecasted_param][:n]
