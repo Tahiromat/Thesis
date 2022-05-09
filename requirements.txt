@@ -11,3 +11,4 @@ streamlit==1.8.1
 streamlit_option_menu==0.3.2
 tensorflow==2.7.0
 webdriver_manager==3.5.2
+pystan==2.19.1.1
