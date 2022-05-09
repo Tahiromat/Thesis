@@ -87,12 +87,6 @@ elif selected_page == "Forecasting":
     if forecast_algorithms == "Prophet":
         for param in data.columns[1:]:
             prophet_forecast(st, data, param)
-            # col1, col2 = st.columns(2)
-            # st.markdown('#')
-            # with col1:
-            #     visualize_line_plot(st, data, param)
-            # with col2:
-            #     prophet_forecast(st, data, param)
     elif  forecast_algorithms == "LSTM":
         data = pd.read_csv(data_path, index_col='Date')
         for param in data.columns:

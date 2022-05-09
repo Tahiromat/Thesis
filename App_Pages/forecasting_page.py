@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import pandas as pd
+import plotly.express as px
 from prophet import Prophet
 import statsmodels.api as smapi
 from plotly import graph_objs as go
@@ -17,16 +18,22 @@ def prophet_forecast(st, data, forecast_column_name):
     data.reset_index(drop=True, inplace=True)
     df_train = data[['Date', forecast_column_name]]     
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
+    col1, col2 = st.columns(2)
+    fig1 = px.line(data.reset_index(), x='Date', y=forecast_column_name)
+    fig1.layout.update(title_text=forecast_column_name, xaxis_rangeslider_visible=True, width=800, height=600)
+    with col1:
+        st.plotly_chart(fig1)
     m = Prophet()
     m.fit(df_train)
     future = m.make_future_dataframe(period)
     forecast = m.predict(future)
     fig1 = plot_plotly(m, forecast)
-    st.plotly_chart(fig1)
+    with col2:
+        st.plotly_chart(fig1)
 
 def lstm_forecast(st, data, forecast_parameter):
     data.index = pd.to_datetime(data.index)
-    data = data.loc[data.index >= '2021-01-01']
+    data = data.loc[data.index >= '2022-01-01']
     data = data.resample('D').mean()
     data = data.filter([forecast_parameter])
     dataset = data.values
