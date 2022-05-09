@@ -83,16 +83,15 @@ elif selected_page == "Visualization":
             visualize_histogram_plot(st, data, param)
 
 elif selected_page == "Forecasting":
-    data = pd.read_csv(data_path)
+    data = pd.read_csv(data_path, index_col='Date')
     if forecast_algorithms == "Prophet":
+        data = pd.read_csv(data_path)
         for param in data.columns[1:]:
             prophet_forecast(st, data, param)
     elif  forecast_algorithms == "LSTM":
-        data = pd.read_csv(data_path, index_col='Date')
         for param in data.columns:
             lstm_forecast(st, data, param)
     else :
-        data = pd.read_csv(data_path, index_col='Date')
         for param in data.columns:
             arima_forecast(st, data, param)
 
