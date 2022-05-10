@@ -18,11 +18,11 @@ def home_page(st, data, selected_param):
     with col1:
         fig = go.Figure()
         fig.add_trace(go.Line(x=hourly_data_mean.index, y=data[selected_param]))
-        fig.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=750, height=600)
+        fig.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=800, height=600)
         st.plotly_chart(fig)
 
     with col2:
         fig = go.Figure()
         fig.add_trace(go.Line(x=weekly_data_mean.index, y=data[selected_param]))
-        fig.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=750, height=600)
+        fig.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=800, height=600)
         st.plotly_chart(fig)
