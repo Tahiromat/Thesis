@@ -1,19 +1,28 @@
 import pandas as pd
+import plotly.express as px
+from plotly import graph_objs as go
 
-def home_page(st, data):
-    data.index = pd.to_datetime(data.index)
-    data = data.loc[data.index >= '2022-03-20']
-    data = data.resample('D').mean()
-    st.markdown('#')
-    st.markdown('#')
-    st.markdown('Head of data')
-    st.write(data)
-    st.markdown('#')
-    st.markdown('#')
-    st.area_chart(data)
-    st.markdown('#')
-    st.line_chart(data)
+def home_page(st, data, selected_param):
+    data['Date'] = pd.to_datetime(data['Date'])
+    data = data.set_index('Date').resample('H').mean().reset_index()
+
+    data['hour'] = data.Date.dt.hour
+    data['weekday'] = pd.Categorical(data.Date.dt.strftime('%A'), categories=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], ordered=True)
+    
     
 
+    hourly_data_mean = data[[selected_param, 'hour']].groupby('hour').mean()
+    weekly_data_mean = data[[selected_param, 'weekday']].groupby('weekday').mean()
 
+    col1, col2 = st.columns(2)
+    with col1:
+        fig = go.Figure()
+        fig.add_trace(go.Line(x=hourly_data_mean.index, y=data[selected_param]))
+        fig.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=750, height=600)
+        st.plotly_chart(fig)
 
+    with col2:
+        fig = go.Figure()
+        fig.add_trace(go.Line(x=weekly_data_mean.index, y=data[selected_param]))
+        fig.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=750, height=600)
+        st.plotly_chart(fig)

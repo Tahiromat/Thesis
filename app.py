@@ -64,8 +64,14 @@ else:
     st.title("Blogs")
 
 if selected_page == "Home":
-    data = pd.read_csv(data_path, index_col='Date')
-    home_page(st, data) 
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write('Mean of the hours  when groupby')
+    with col2:
+        st.write('Mean of the day when groupby')
+    data = pd.read_csv(data_path)
+    for param in data.columns[1:]:  
+            home_page(st, data, param) 
 
 elif selected_page == "Visualization":
     data = pd.read_csv(data_path, index_col='Date')
@@ -113,5 +119,4 @@ else:
     elif blogs == "About LSTM":
         st.title("About LSTM")
     else:
-        
         st.title("About ARIMA")
