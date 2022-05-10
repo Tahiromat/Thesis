@@ -41,15 +41,15 @@ with st.sidebar:
 with st.sidebar:
     st.markdown("#")
     st.write("Select Anomaly Detection Algorithm")
-    anomaly_detetection_algorithms = option_menu(None, ["LSTM", "PyCaret", 'Prophet'], 
+    anomaly_detetection_algorithms = option_menu(None, ["LSTM", "Isolation Forest", 'Prophet'], 
         icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
 with st.sidebar:
     st.markdown("#")
     st.write("Read Blogs ")
-    blogs = option_menu(None, ["About Time Series", "About Prophet", "About LSTM", "About ARIMA"], 
-        icons=['list-task', 'list-task', 'list-task', "list-task"], 
+    blogs = option_menu(None, ["About Time Series", "About Prophet", "About LSTM", 'About Isolation F.', "About ARIMA"], 
+        icons=['list-task', 'list-task', 'list-task', "list-task", "list-task"], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
 if selected_page == "Home":
@@ -100,8 +100,10 @@ elif selected_page == "Forecasting":
 elif selected_page == 'Anomaly Detection':
     if  anomaly_detetection_algorithms == "LSTM":
         lstm_anomaly_detection_page(st)
-    elif  anomaly_detetection_algorithms == "PyCaret":
-        pycaret_anomaly_detection_page(st)
+    elif  anomaly_detetection_algorithms == "Isolation Forest":
+        data = pd.read_csv(data_path)
+        for param in data.columns[1:]:
+            isolationforest_anomaly_detection_page(st, data, param)
     else :
         data = pd.read_csv(data_path)
         for param in data.columns[1:]:
@@ -114,5 +116,7 @@ else:
         st.title("About Prophet")
     elif blogs == "About LSTM":
         st.title("About LSTM")
+    elif blogs == "About Isolation F.":
+        st.title("About Isolation F.")
     else:
         st.title("About ARIMA")
