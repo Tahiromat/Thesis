@@ -64,14 +64,10 @@ else:
     st.title("Blogs")
 
 if selected_page == "Home":
-    col1, col2 = st.columns(2)
-    with col1:
-        st.write('Mean of the hours  when groupby')
-    with col2:
-        st.write('Mean of the day when groupby')
     data = pd.read_csv(data_path)
+    home_page(st, data)
     for param in data.columns[1:]:  
-            home_page(st, data, param) 
+            home_page_vis_help(st, data, param) 
 
 elif selected_page == "Visualization":
     data = pd.read_csv(data_path, index_col='Date')
