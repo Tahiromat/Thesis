@@ -65,5 +65,4 @@
 # Referance Links For Anomaly Detection
 - [LSTM Anomaly Detection](https://towardsdatascience.com/time-series-of-price-anomaly-detection-with-lstm-11a12ba4f6d9)
 - [LSTM Anomaly Detection](https://curiousily.com/posts/anomaly-detection-in-time-series-with-lstms-using-keras-in-python/) #Alternative link 
-- [PYCARET Anomaly Detection](https://towardsdatascience.com/time-series-anomaly-detection-with-pycaret-706a6e2b2427)
-- [PROPHET Anomaly Detection](https://www.analyticsvidhya.com/blog/2021/12/anomaly-detection-model-using-facebook-prophet/)
+- [Isolation Forest Anomaly Detection](https://www.youtube.com/watch?v=hkXPdkPfgoo)
