@@ -19,6 +19,13 @@ def visualize_scatter_plot(st, data, y_axis):
     fig.layout.update(title_text=y_axis, xaxis_rangeslider_visible=True, width=1500, height=600)
     st.plotly_chart(fig)
 
+def visualize_area_chart(st, data, y_axis):
+    data = data[y_axis]
+    data = data.loc[data.index >= '2022-03-01']
+    st.markdown("#")
+    st.markdown("#")
+    st.area_chart(data)
+
 def visualize_histogram_plot(st, data, y_axis):
     data.index = pd.to_datetime(data.index)
     data = data.loc[data.index >= '2022-03-01']
@@ -27,9 +34,3 @@ def visualize_histogram_plot(st, data, y_axis):
     fig.layout.update(title_text=y_axis, xaxis_rangeslider_visible=True, width=1500, height=600)
     st.plotly_chart(fig)
 
-def visualize_area_chart(st, data, y_axis):
-    data = data[y_axis]
-    # st.markdown(y_axis)
-    st.markdown("#")
-    st.markdown("#")
-    st.area_chart(data)
