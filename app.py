@@ -1,6 +1,7 @@
 import streamlit as st
 from App_Pages.home_page import *
 from App_Pages.forecasting_page import *
+from App_Pages.analysis_page import *
 from App_Pages.visualization_page import *
 from streamlit_option_menu import option_menu
 from App_Pages.anomaly_detection_page import *
@@ -20,8 +21,15 @@ with  st.sidebar:
 
 with st.sidebar:
     st.markdown("###")
-    selected_page = option_menu(None, ["Home", "Visualization", "Forecasting", 'Anomaly Detection', 'Blogs'], 
-        icons=['house', 'list-task', "list-task", 'list-task', 'list-task'], 
+    selected_page = option_menu(None, ["Home", "Analysis", "Visualization", "Forecasting", 'Anomaly Detection', 'Blogs'], 
+        icons=['house', 'list-task', "list-task", 'list-task', 'list-task', 'list-task'], 
+        menu_icon="cast", default_index=0, orientation="vertical")
+
+with st.sidebar:
+    st.markdown("#")
+    st.write("Select Analys Type ")
+    analysis_type = option_menu(None, [ "Hourly Analysis", "Daily Analysis", "Weekly Analysis", "Monthly Analysis", "Yearly Analysis"], 
+        icons=['list-task', "list-task", "list-task", 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
 with st.sidebar:
@@ -54,6 +62,8 @@ with st.sidebar:
 
 if selected_page == "Home":
     st.title("""Air Quality of Turkey """)
+elif selected_page == "Analysis":
+    st.title("Analysis")
 elif selected_page == "Visualization":
     st.title("Visualization")
 elif selected_page == "Forecasting":
@@ -66,8 +76,24 @@ else:
 if selected_page == "Home":
     data = pd.read_csv(data_path)
     home_page(st, data)
-    for param in data.columns[1:]:  
-            home_page_vis_help(st, data, param) 
+
+elif selected_page == "Analysis":
+    data = pd.read_csv(data_path)
+    if analysis_type == "Hourly Analysis":
+        for param in data.columns[1:]: 
+            hourly_analysis(st, data, param)
+    elif analysis_type == "Daily Analysis":
+        for param in data.columns[1:]: 
+            daily_analysis(st, data, param)
+    elif analysis_type == "Weekly Analysis":
+        for param in data.columns[1:]: 
+            weekly_analysis(st, data, param)
+    elif analysis_type == "Monthly Analysis":
+        for param in data.columns[1:]: 
+            monthly_analysis(st, data, param)
+    else:
+        for param in data.columns[1:]: 
+            yearly_analysis(st, data, param)
 
 elif selected_page == "Visualization":
     data = pd.read_csv(data_path, index_col='Date')
