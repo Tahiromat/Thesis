@@ -60,18 +60,18 @@ with st.sidebar:
         icons=['list-task', 'list-task', 'list-task', "list-task", "list-task"], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
-if selected_page == "Home":
-    st.title("""Air Quality of Turkey """)
-elif selected_page == "Analysis":
-    st.title("Analysis")
-elif selected_page == "Visualization":
-    st.title("Visualization")
-elif selected_page == "Forecasting":
-    st.title("Forecasting")
-elif selected_page == 'Anomaly Detection':
-    st.title("Anomaly Detection")
-else:
-    st.title("Blogs")
+# if selected_page == "Home":
+#     st.title("""Air Quality of Turkey """)
+# elif selected_page == "Analysis":
+#     st.title("Analysis")
+# elif selected_page == "Visualization":
+#     st.title("Visualization")
+# elif selected_page == "Forecasting":
+#     st.title("Forecasting")
+# elif selected_page == 'Anomaly Detection':
+#     st.title("Anomaly Detection")
+# else:
+#     st.title("Blogs")
 
 if selected_page == "Home":
     data = pd.read_csv(data_path)
