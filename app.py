@@ -10,17 +10,22 @@ from App_Pages.generate_data_basedon_selections import *
 st.set_page_config(page_title="Air Quality Analysis", page_icon="❗", layout="wide")
 st.markdown(""" <style> [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {width: 280px;} </style> """, unsafe_allow_html=True)
 hide_streamlit_style = """ <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} </style> """
+
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 DATASET_PATH = 'Dataset/'
 
 with  st.sidebar:
-    st.title("Choose Type")
-    st.markdown("This is an open source project which can be downloaded for free from github (requires developer experience to set up and configure)")
-    st.markdown("#")
+    st.title("Make Selections")
+    st.markdown("* First, select the City and then the Station.")
+    st.markdown("* Then select the page you want to go to.")
+    st.markdown("* Finally, choose one of the following types related to the page you have chosen.")
+    st.markdown("* After all you can change your data as you want.")
+    st.markdown("######")
     data_path = find_data(st, DATASET_PATH)
 
 with st.sidebar:
     st.markdown("###")
+    st.write("Select Page")
     selected_page = option_menu(None, ["Home", "Visualization", "Analysis",  'Anomaly Detection', "Forecasting", 'Blogs'], 
         icons=['house', 'list-task', "list-task", 'list-task', 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
@@ -34,7 +39,7 @@ with st.sidebar:
 
 with st.sidebar:
     st.markdown("#")
-    st.write("Select Analys Type ")
+    st.write("Select Analysis Type ")
     analysis_type = option_menu(None, [ "Hourly Analysis", "Daily Analysis", "Weekly Analysis", "Monthly Analysis", "Yearly Analysis"], 
         icons=['list-task', "list-task", "list-task", 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")

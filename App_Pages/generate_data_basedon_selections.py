@@ -8,7 +8,6 @@ stations = []
 def find_data(st, DATASET_PATH):
     cities.clear()
     selected_city = st.selectbox('Select City', choose_city(DATASET_PATH))
-    st.markdown("###")  
     stations.clear()
     selected_station = st.selectbox('Select Station', choose_station(DATASET_PATH, selected_city))
     data_path = f"{DATASET_PATH}{selected_city}/{selected_station}"

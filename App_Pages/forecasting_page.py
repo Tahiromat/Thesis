@@ -19,17 +19,17 @@ def prophet_forecast(st, data, forecast_column_name):
     df_train = data[['Date', forecast_column_name]]     
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
     col1, col2 = st.columns(2)
-    fig1 = px.line(data.reset_index(), x='Date', y=forecast_column_name)
-    fig1.layout.update(title_text=forecast_column_name, xaxis_rangeslider_visible=True, width=800, height=600)
     with col1:
+        fig1 = px.scatter(data.reset_index(), x='Date', y=forecast_column_name)
+        fig1.layout.update(title_text=forecast_column_name, xaxis_rangeslider_visible=True, width=800, height=600)
         st.plotly_chart(fig1)
     m = Prophet()
     m.fit(df_train)
     future = m.make_future_dataframe(period)
     forecast = m.predict(future)
-    fig1 = plot_plotly(m, forecast)
     with col2:
-        st.plotly_chart(fig1)
+        fig2 = plot_plotly(m, forecast)
+        st.plotly_chart(fig2)
 
 def lstm_forecast(st, data, forecast_parameter):
     data.index = pd.to_datetime(data.index)
@@ -72,7 +72,7 @@ def lstm_forecast(st, data, forecast_parameter):
     fig.add_trace(go.Line(x=train.index, y=train[forecast_parameter]))
     fig.add_trace(go.Line(x=valid.index, y=valid[forecast_parameter]))
     fig.add_trace(go.Line(x=valid.index, y=valid['Predictions']))
-    fig.layout.update(title_text=forecast_parameter, xaxis_rangeslider_visible=True, width=1500, height=600)
+    fig.layout.update(title_text=forecast_parameter, width=800, height=500)
     st.plotly_chart(fig)
     
 def arima_forecast(st, data, forecasted_param):
@@ -97,5 +97,5 @@ def arima_forecast(st, data, forecasted_param):
     fig.add_trace(go.Line(x=test.index, y=test[:step]))
     fig.add_trace(go.Line(x=fc.index, y = fc))
     # fig.add_trace(go.Line(x=valid.index, y=valid['Predictions']))
-    fig.layout.update(title_text=forecasted_param, xaxis_rangeslider_visible=True, width=1500, height=600)
+    fig.layout.update(title_text=forecasted_param, width=800, height=500)
     st.plotly_chart(fig)
