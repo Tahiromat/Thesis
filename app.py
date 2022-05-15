@@ -21,9 +21,16 @@ with  st.sidebar:
 
 with st.sidebar:
     st.markdown("###")
-    selected_page = option_menu(None, ["Home", "Analysis", "Visualization", "Forecasting", 'Anomaly Detection', 'Blogs'], 
+    selected_page = option_menu(None, ["Home", "Visualization", "Analysis",  'Anomaly Detection', "Forecasting", 'Blogs'], 
         icons=['house', 'list-task', "list-task", 'list-task', 'list-task', 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
+
+with st.sidebar:
+    st.markdown("#")
+    st.write("Select Visualization Type")
+    visualization_types = option_menu(None, ["Line", "Scatter", "Area Chart", "Histogram"], 
+        icons=['list-task', 'list-task', 'list-task', 'list-task'], 
+        menu_icon="cast", default_index=0, orientation="vertical")        
 
 with st.sidebar:
     st.markdown("#")
@@ -34,9 +41,9 @@ with st.sidebar:
 
 with st.sidebar:
     st.markdown("#")
-    st.write("Select Visualization Type")
-    visualization_types = option_menu(None, ["Line", "Scatter", "Area Chart", "Histogram"], 
-        icons=['list-task', 'list-task', 'list-task', 'list-task'], 
+    st.write("Select Anomaly Detection Algorithm")
+    anomaly_detetection_algorithms = option_menu(None, ["LSTM", "Isolation Forest", 'Prophet'], 
+        icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
 with st.sidebar:
@@ -44,13 +51,6 @@ with st.sidebar:
     st.write("Select Forecasting Algorithm")
     forecast_algorithms = option_menu(None, ["Prophet", "LSTM", "ARIMA"], 
         icons=['list-task', 'list-task', "list-task"], 
-        menu_icon="cast", default_index=0, orientation="vertical")
-
-with st.sidebar:
-    st.markdown("#")
-    st.write("Select Anomaly Detection Algorithm")
-    anomaly_detetection_algorithms = option_menu(None, ["LSTM", "Isolation Forest", 'Prophet'], 
-        icons=['list-task', 'list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
 with st.sidebar:
@@ -77,6 +77,21 @@ if selected_page == "Home":
     data = pd.read_csv(data_path)
     home_page(st, data)
 
+elif selected_page == "Visualization":
+    data = pd.read_csv(data_path, index_col='Date')
+    if visualization_types == "Line":
+        for param in data.columns:
+            visualize_line_plot(st, data, param)
+    elif visualization_types == "Scatter":
+        for param in data.columns:
+            visualize_scatter_plot(st, data, param)
+    elif visualization_types == "Area Chart":
+        for param in data.columns:
+            visualize_area_chart(st, data, param)
+    else:
+        for param in data.columns:
+            visualize_histogram_plot(st, data, param)
+
 elif selected_page == "Analysis":
     data = pd.read_csv(data_path)
     if analysis_type == "Hourly Analysis":
@@ -95,20 +110,17 @@ elif selected_page == "Analysis":
         for param in data.columns[1:]: 
             yearly_analysis(st, data, param)
 
-elif selected_page == "Visualization":
-    data = pd.read_csv(data_path, index_col='Date')
-    if visualization_types == "Line":
-        for param in data.columns:
-            visualize_line_plot(st, data, param)
-    elif visualization_types == "Scatter":
-        for param in data.columns:
-            visualize_scatter_plot(st, data, param)
-    elif visualization_types == "Area Chart":
-        for param in data.columns:
-            visualize_area_chart(st, data, param)
-    else:
-        for param in data.columns:
-            visualize_histogram_plot(st, data, param)
+elif selected_page == 'Anomaly Detection':
+    if  anomaly_detetection_algorithms == "LSTM":
+        lstm_anomaly_detection_page(st)
+    elif  anomaly_detetection_algorithms == "Isolation Forest":
+        data = pd.read_csv(data_path)
+        for param in data.columns[1:]:
+            isolationforest_anomaly_detection_page(st, data, param)
+    else :
+        data = pd.read_csv(data_path)
+        for param in data.columns[1:]:
+            prophet_anomaly_detection_page(st, data, param)
 
 elif selected_page == "Forecasting":
     data = pd.read_csv(data_path, index_col='Date')
@@ -122,18 +134,6 @@ elif selected_page == "Forecasting":
     else :
         for param in data.columns:
             arima_forecast(st, data, param)
-
-elif selected_page == 'Anomaly Detection':
-    if  anomaly_detetection_algorithms == "LSTM":
-        lstm_anomaly_detection_page(st)
-    elif  anomaly_detetection_algorithms == "Isolation Forest":
-        data = pd.read_csv(data_path)
-        for param in data.columns[1:]:
-            isolationforest_anomaly_detection_page(st, data, param)
-    else :
-        data = pd.read_csv(data_path)
-        for param in data.columns[1:]:
-            prophet_anomaly_detection_page(st, data, param)
 
 else:
     if blogs == "About Time Series":
