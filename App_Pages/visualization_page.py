@@ -21,17 +21,17 @@ def visualize_scatter_plot(st, data, y_axis):
     st.plotly_chart(fig)
 
 def visualize_area_chart(st, data, y_axis):
-    data = data[y_axis]
+    data.index = pd.to_datetime(data.index)
     data = data.loc[data.index >= '2022-03-01']
-    st.markdown("#")
-    st.markdown("#")
-    st.area_chart(data)
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=data.index, y=data[y_axis],  mode='lines', fill='tonexty'))
+    fig.layout.update(title_text=y_axis, xaxis_rangeslider_visible=True, width=1500, height=600)
+    st.plotly_chart(fig)
 
 def visualize_histogram_plot(st, data, y_axis):
     data.index = pd.to_datetime(data.index)
     data = data.loc[data.index >= '2020-03-01']
     data = data.resample('D').mean()
-
     hist_data = [data[y_axis]]
     group_labels = [y_axis]
     fig = ff.create_distplot(hist_data, group_labels, bin_size=.2)
