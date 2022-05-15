@@ -51,3 +51,4 @@ def prophet_anomaly_detection_page(st, data, selected_param):
         fig2 = px.scatter(result.reset_index(), x='ds', y='y', color='anomaly')
         fig2.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=800, height=500)
         st.plotly_chart(fig2)
+
