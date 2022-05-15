@@ -2,7 +2,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.figure_factory as ff
 from plotly import graph_objs as go
-from sqlalchemy import false
 
 def visualize_line_plot(st, data, y_axis):
     data.index = pd.to_datetime(data.index)
