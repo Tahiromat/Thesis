@@ -11,11 +11,11 @@ from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, LSTM
 
 def prophet_forecast(st, data, forecast_column_name):
-    n_years = 1
-    period = n_years * 10
-    data = data.loc[data['Date'] >= '2022-03-01']
     data['Date'] = pd.to_datetime(data['Date'])
-    data.reset_index(drop=True, inplace=True)
+    period = 30
+    data = data.loc[data['Date'] >= '2021-06-01']
+    data = data.set_index('Date').resample('D').mean().reset_index()
+    # data.reset_index(drop=True, inplace=True)
     df_train = data[['Date', forecast_column_name]]     
     df_train = df_train.rename(columns={"Date": "ds", forecast_column_name: "y"})
     col1, col2 = st.columns(2)

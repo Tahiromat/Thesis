@@ -4,17 +4,14 @@ from prophet import Prophet
 import plotly.express as px
 from sklearn.ensemble import IsolationForest
 
-
 def lstm_anomaly_detection_page(st):
     st.write("LSTM algorithm has been choosed for anomaly detection")
 
 def isolationforest_anomaly_detection_page(st, data, selected_param):
     df = data[['Date', selected_param]]
     df['Date'] = pd.to_datetime(df['Date'])
-    df = df[(df['Date'] > '2022-03-01')]
-    df = df.set_index('Date').resample('H').mean().reset_index()
-    df['hour'] = df.Date.dt.hour
-    df['weekday'] = pd.Categorical(df.Date.dt.strftime('%A'), categories=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], ordered=True)
+    df = df[(df['Date'] > '2021-06-01')]
+    df = df.set_index('Date').resample('D').mean().reset_index()
     col1, col2 = st.columns(2)
     with col1:
         fig1 = px.scatter(df.reset_index(), x='Date', y=selected_param)
@@ -24,18 +21,18 @@ def isolationforest_anomaly_detection_page(st, data, selected_param):
     model.fit(df[[selected_param]])
     df['outliers'] = pd.Series(model.predict(df[[selected_param]])).apply(lambda x: 'yes' if (x == -1) else 'no')
     with col2:
-        fig2 = px.scatter(df.reset_index(), x='Date', y=selected_param, color='outliers', hover_data=['hour'])
+        fig2 = px.scatter(df.reset_index(), x='Date', y=selected_param, color='outliers')
         fig2.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=800, height=500)
         st.plotly_chart(fig2)
 
 def prophet_anomaly_detection_page(st, data, selected_param):
     df = data[['Date', selected_param]]
     df['Date'] = pd.to_datetime(df['Date'])
-    df = df.set_index('Date').resample('H').mean().reset_index()
-    df = df[(df['Date'] > '2021-12-30')]
+    df = df.set_index('Date').resample('D').mean().reset_index()
+    df = df[(df['Date'] >= '2021-06-01')]
     data = df.reset_index()[['Date', selected_param]].rename({'Date':'ds', selected_param:'y'}, axis='columns')
-    train = data[(data['ds'] >= '2022-01-01') & (data['ds'] <= '2022-02-01')]
-    test = data[(data['ds'] > '2022-03-01')]
+    train = data[(data['ds'] >= '2021-06-01') & (data['ds'] <= '2022-02-01')]
+    test = data[(data['ds'] > '2022-02-01')]
     col1, col2 = st.columns(2)
     with col1:
         fig1 = px.scatter(df.reset_index(), x='Date', y=selected_param)
@@ -43,7 +40,7 @@ def prophet_anomaly_detection_page(st, data, selected_param):
         st.plotly_chart(fig1)
     m = Prophet(changepoint_range=0.95)
     m.fit(train)
-    future = m.make_future_dataframe(periods=119, freq='H')
+    future = m.make_future_dataframe(periods=30, freq='D')
     forecast = m.predict(future)
     result = pd.concat([data.set_index('ds')['y'], forecast.set_index('ds')[['yhat','yhat_lower','yhat_upper']]], axis=1)
     # fig2 = m.plot(forecast)
