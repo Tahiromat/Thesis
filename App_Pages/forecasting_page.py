@@ -54,7 +54,7 @@ def lstm_forecast(st, data, forecast_parameter):
     model.add(Dense(25))
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mean_squared_error')
-    model.fit(x_train, y_train, batch_size=128, epochs=2)
+    model.fit(x_train, y_train, batch_size=128, epochs=5)
     test_data = scaled_data[training_data_len - 60 : , :]
     x_test = []
     y_test = dataset[training_data_len : , :]
@@ -68,34 +68,42 @@ def lstm_forecast(st, data, forecast_parameter):
     train = data[:training_data_len]
     valid = data[training_data_len:]
     valid['Predictions'] = predictions
-    fig = go.Figure()
-    fig.add_trace(go.Line(x=train.index, y=train[forecast_parameter]))
-    fig.add_trace(go.Line(x=valid.index, y=valid[forecast_parameter]))
-    fig.add_trace(go.Line(x=valid.index, y=valid['Predictions']))
-    fig.layout.update(title_text=forecast_parameter, width=800, height=500)
-    st.plotly_chart(fig)
+    col1, col2 = st.columns(2)
+    with col1:
+        fig1 = go.Figure()
+        fig1.add_trace(go.Line(x=train.index, y=train[forecast_parameter]))
+        fig1.layout.update(title_text=forecast_parameter, xaxis_rangeslider_visible=True, width=800, height=500)
+        st.plotly_chart(fig1)
+
+    with col2:
+        fig2 = go.Figure()
+        fig2.add_trace(go.Line(x=valid.index, y=valid[forecast_parameter]))
+        fig2.add_trace(go.Line(x=valid.index, y=valid['Predictions']))
+        fig2.layout.update(title_text=forecast_parameter, xaxis_rangeslider_visible=True, width=800, height=500)
+        st.plotly_chart(fig2)
     
 def arima_forecast(st, data, forecasted_param):
     data.index = pd.to_datetime(data.index)
-    data = data.loc[data.index >= '2020-01-01']
+    data = data.loc[data.index >= '2022-01-01']
     data = data.resample('D').mean()
     df = data[[forecasted_param]].copy()
     n = int(len(df) * 0.8)
     train = df[forecasted_param][:n]
     test = df[forecasted_param][n:]
     model = smapi.tsa.arima.ARIMA(train, order=(6, 1, 3))
-    # model = ARIMA(train, order=(6, 1, 3))
-    result = model.fit()
+    future = model.fit()
     step = 30
-    fc = result.forecast(step, alpha=0.01)
-    # fc, se, conf = result.forecast(step, alpha=0.05)
+    fc = future.forecast(step, alpha=0.1)
     fc = pd.Series(fc, index=test[:step].index)
-    # lower = pd.Series(conf[:, 0], index=test[:step].index)
-    # upper = pd.Series(conf[:, 1], index=test[:step].index)
-    fig = go.Figure()
-    fig.add_trace(go.Line(x=df.index, y=df[forecasted_param]))
-    fig.add_trace(go.Line(x=test.index, y=test[:step]))
-    fig.add_trace(go.Line(x=fc.index, y = fc))
-    # fig.add_trace(go.Line(x=valid.index, y=valid['Predictions']))
-    fig.layout.update(title_text=forecasted_param, width=800, height=500)
-    st.plotly_chart(fig)
+    col1, col2 = st.columns(2)
+    with col1:
+        fig1 = go.Figure()
+        fig1.add_trace(go.Line(x=df.index, y=df[forecasted_param][:n]))
+        fig1.layout.update(title_text=forecasted_param, xaxis_rangeslider_visible=True, width=800, height=500)
+        st.plotly_chart(fig1)
+    with col2:
+        fig2 = go.Figure()
+        fig2.layout.update(title_text=forecasted_param, xaxis_rangeslider_visible=True, width=800, height=500)
+        fig2.add_trace(go.Line(x=test.index, y=test[:step]))
+        fig2.add_trace(go.Line(x=fc.index, y=fc))
+        st.plotly_chart(fig2)
