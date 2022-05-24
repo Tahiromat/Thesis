@@ -23,7 +23,7 @@ def prophet_forecast(st, data, forecast_column_name):
         fig1 = px.scatter(data.reset_index(), x='Date', y=forecast_column_name)
         fig1.layout.update(title_text=forecast_column_name, xaxis_rangeslider_visible=True, width=800, height=600)
         st.plotly_chart(fig1)
-    m = Prophet()
+    m = Prophet(changepoint_range=0.95)
     m.fit(df_train)
     future = m.make_future_dataframe(period)
     forecast = m.predict(future)
@@ -74,7 +74,6 @@ def lstm_forecast(st, data, forecast_parameter):
         fig1.add_trace(go.Line(x=train.index, y=train[forecast_parameter]))
         fig1.layout.update(title_text=forecast_parameter, xaxis_rangeslider_visible=True, width=800, height=500)
         st.plotly_chart(fig1)
-
     with col2:
         fig2 = go.Figure()
         fig2.add_trace(go.Line(x=valid.index, y=valid[forecast_parameter]))

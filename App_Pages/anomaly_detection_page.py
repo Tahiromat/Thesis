@@ -17,7 +17,7 @@ def isolationforest_anomaly_detection_page(st, data, selected_param):
         fig1 = px.scatter(df.reset_index(), x='Date', y=selected_param)
         fig1.layout.update(title_text=selected_param, xaxis_rangeslider_visible=True, width=800, height=500)
         st.plotly_chart(fig1)
-    model = IsolationForest(contamination=0.004)
+    model = IsolationForest(n_estimators=100, max_samples='auto', contamination=float(0.004),max_features=1.0)
     model.fit(df[[selected_param]])
     df['outliers'] = pd.Series(model.predict(df[[selected_param]])).apply(lambda x: 'yes' if (x == -1) else 'no')
     with col2:
