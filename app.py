@@ -47,8 +47,8 @@ with st.sidebar:
 with st.sidebar:
     st.markdown("#")
     st.write("Select Anomaly Detection Algorithm")
-    anomaly_detetection_algorithms = option_menu(None, ["LSTM", "Isolation Forest", 'Prophet'], 
-        icons=['list-task', 'list-task', "list-task", 'list-task'], 
+    anomaly_detetection_algorithms = option_menu(None, ["Isolation Forest", 'Prophet'], 
+        icons=['list-task', "list-task", 'list-task'], 
         menu_icon="cast", default_index=0, orientation="vertical")
 
 with st.sidebar:
