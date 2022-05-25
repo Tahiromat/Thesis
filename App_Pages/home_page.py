@@ -25,9 +25,9 @@ def home_page(st, data):
 
 def map_view(st, lat, long):
 
-    df = pd.DataFrame(
-    np.random.randn(100, 2) / [25, 25] + [lat, long],
-    columns=['lat', 'lon'])
+    # df = pd.DataFrame(
+    # np.random.randn(100, 2) / [25, 25] + [lat, long],
+    # columns=['lat', 'lon'])
 
     st.pydeck_chart(pdk.Deck(
         map_style='mapbox://styles/mapbox/light-v9',
@@ -38,19 +38,19 @@ def map_view(st, lat, long):
             pitch=50,
         ),
         layers=[
-            pdk.Layer(
-                'HexagonLayer',
-                data=df,
-                get_position='[lon, lat]',
-                radius=200,
-                elevation_scale=4,
-                elevation_range=[0, 1000],
-                pickable=True,
-                extruded=True,
-            ),
+            # pdk.Layer(
+            #     'HexagonLayer',
+            #     # data=df,
+            #     get_position='[lon, lat]',
+            #     radius=200,
+            #     elevation_scale=4,
+            #     elevation_range=[0, 1000],
+            #     pickable=True,
+            #     extruded=True,
+            # ),
             pdk.Layer(
                 'ScatterplotLayer',
-                data=df,
+                # data=df,
                 get_position='[lon, lat]',
                 get_color='[200, 30, 0, 160]',
                 get_radius=200,
