@@ -11,8 +11,8 @@ def home_page(st, data):
 
     # st.write(data)
 
-    map_view(st, 41.015137, 28.979530) # Istanbul
-    # map_view(st, 39.925533, 32.866287) # Ankara
+    # map_view(st, 41.015137, 28.979530) # Istanbul
+    # map_view(st, 41.637602, 32.333811) 
 
     st.markdown('#')
     pie_chart_4home(st, data)
@@ -23,7 +23,7 @@ def home_page(st, data):
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HOME PAGE HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-def map_view(st, lat, long):
+def map_view(st, lat, lon):
 
     # df = pd.DataFrame(
     # np.random.randn(100, 2) / [25, 25] + [lat, long],
@@ -33,7 +33,7 @@ def map_view(st, lat, long):
         map_style='mapbox://styles/mapbox/light-v9',
         initial_view_state=pdk.ViewState(
             latitude=lat,
-            longitude=long,
+            longitude=lon,
             zoom=11,
             pitch=50,
         ),
@@ -100,3 +100,8 @@ def graphviz_4home(st):
     ''')
 
 
+# locations = pd.DataFrame({
+#     'cities' : ['Bartın', 'Nevşehir', 'Muş', 'Bolu', 'Niğde', 'Batman', 'Afyon', 'Kastamonu', 'Uşak', 'Amasya', 'Iğdır', 'Bilecik', 'Bitlis', 'Gaziantep', 'Ardahan', 'Kırıkkale', 'Edirne', 'Sinop', 'Yalova', 'Çanakkale', 'Elazığ', 'Ankara', 'Çorum', 'Adıyaman', 'Mersin', 'Yozgat', 'Kayseri', 'Erzincan', 'Rize', 'Hakkari', 'Osmaniye', 'Manisa', 'Balıkesir', 'Sivas', 'Muğla', 'Sakarya', 'İzmir', 'Giresun', 'Artvin', 'Samsun', 'Karaman', 'Tekirdağ', 'Kilis', 'Tunceli', 'Diyarbakır', 'Ağrı', 'Çankaya', 'Kahramanmaraş', 'Kütahya', 'İstanbul', 'Trabzon', 'Bingöl', 'Antalya', 'Kocaeli', 'Şırnak', 'Kırklareli', 'Burdur', 'Siirt', 'Erzurum', 'Hatay', 'Düzce', 'Aksaray', 'Gümüşhane', 'Denizli', 'Isparta', 'Adana', 'Şanlıurfa', 'Kars', 'Malatya', 'Çankırı', 'Karabük', 'Aydın', 'Ordu', 'Konya', 'Bursa', 'Zonguldak', 'Eskişehir', 'Tokat', 'Bayburt', 'Kırşehir']
+#     'lat' : [41.637602,]
+#     'lon' : [32.333811]
+# })
