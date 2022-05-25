@@ -26,7 +26,7 @@ def home_page(st, data):
 def map_view(st, lat, long):
 
     df = pd.DataFrame(
-    np.random.randn(1000, 2) / [25, 25] + [lat, long],
+    np.random.randn(100, 2) / [25, 25] + [lat, long],
     columns=['lat', 'lon'])
 
     st.pydeck_chart(pdk.Deck(
