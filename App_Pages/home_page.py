@@ -7,7 +7,7 @@ from plotly import graph_objs as go
 def home_page(st, data):
     data['Date'] = pd.to_datetime(data['Date'])
     # data = data.loc[data['Date'] >= '2022-03-01']
-    st.title('Air Quality Analysis of Turkey')
+    st.title('Turkey Air Quality Analysis  ')
 
     # map_view(st, 41.015137, 28.979530) # Istanbul
     # map_view(st, 41.637602, 32.333811) 
