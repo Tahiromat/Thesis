@@ -1,26 +1,62 @@
+import numpy as np
 import pandas as pd
+import pydeck as pdk
 import plotly.express as px
+from plotly import graph_objs as go
 
 def home_page(st, data):
     data['Date'] = pd.to_datetime(data['Date'])
-    data = data.loc[data['Date'] >= '2022-03-01']
+    # data = data.loc[data['Date'] >= '2022-03-01']
     st.title('Air Quality of Turkey')
 
-    st.write('Text to analyze', '''
-     It was the best of times, it was the worst of times, it was
-     the age of wisdom, it was the age of foolishness, it was
-     the epoch of belief, it was the epoch of incredulity, it
-     was the season of Light, it was the season of Darkness, it
-     was the spring of hope, it was the winter of despair, (...)
-     ''')
-    
-    st.markdown('#')
-    # st.header('Where is Data Coming')
-    # graphviz_4home(st)
+    # st.write(data)
+
+    map_view(st, 41.015137, 28.979530) # Istanbul
+    # map_view(st, 39.925533, 32.866287) # Ankara
 
     st.markdown('#')
-    st.header('Some Graph to understand data')
     pie_chart_4home(st, data)
+
+    st.markdown('#')
+    bar_chart_4home(st, data)
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HOME PAGE HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+def map_view(st, lat, long):
+
+    df = pd.DataFrame(
+    np.random.randn(1000, 2) / [25, 25] + [lat, long],
+    columns=['lat', 'lon'])
+
+    st.pydeck_chart(pdk.Deck(
+        map_style='mapbox://styles/mapbox/light-v9',
+        initial_view_state=pdk.ViewState(
+            latitude=lat,
+            longitude=long,
+            zoom=11,
+            pitch=50,
+        ),
+        layers=[
+            pdk.Layer(
+                'HexagonLayer',
+                data=df,
+                get_position='[lon, lat]',
+                radius=200,
+                elevation_scale=4,
+                elevation_range=[0, 1000],
+                pickable=True,
+                extruded=True,
+            ),
+            pdk.Layer(
+                'ScatterplotLayer',
+                data=df,
+                get_position='[lon, lat]',
+                get_color='[200, 30, 0, 160]',
+                get_radius=200,
+            ),
+        ],
+    ))
 
 
 
@@ -32,12 +68,20 @@ def pie_chart_4home(st, data):
     df_mean = pd.DataFrame()
     df_mean['Names'] = data.columns[1:]
     df_mean['Values'] = mean_values
-
     col1, col2 = st.columns(2)
-
     fig = px.pie(df_mean, values='Values', names='Names')
-    fig.layout.update(width=900, height=600)
+    fig.layout.update(width=1500, height=600)
     st.plotly_chart(fig)
+
+def bar_chart_4home(st, data):
+    for i in data.columns[1:]:
+        data = data.set_index('Date').resample('D').mean().reset_index()
+        data['year'] = data.Date.dt.year
+        yearly_data_mean = data[[i, 'year']].groupby('year').mean()
+        fig = go.Figure()
+        fig.add_trace(go.Bar(x=yearly_data_mean.index, y=yearly_data_mean[i]))
+        fig.layout.update(title_text=i, xaxis_rangeslider_visible=False, width=1500, height=600)    
+        st.plotly_chart(fig)
 
 
 
@@ -54,3 +98,5 @@ def graphviz_4home(st):
         Dataset -> Forecasting
         }
     ''')
+
+

@@ -79,6 +79,7 @@ with st.sidebar:
 #     st.title("Blogs")
 
 if selected_page == "Home":
+    st.write(data_path)
     data = pd.read_csv(data_path)
     home_page(st, data)
 
