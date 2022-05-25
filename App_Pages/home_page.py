@@ -17,8 +17,13 @@ def home_page(st, data):
     st.markdown('#')
     pie_chart_4home(st, data)
 
-    st.markdown('#')
-    bar_chart_4home(st, data)
+    col1, col2 = st.columns(2)
+
+
+    with col1:
+        bar_chart_4home(st, data)
+    with col2:
+        line_chart_4home(st, data)
 
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HOME PAGE HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -80,7 +85,17 @@ def bar_chart_4home(st, data):
         yearly_data_mean = data[[i, 'year']].groupby('year').mean()
         fig = go.Figure()
         fig.add_trace(go.Bar(x=yearly_data_mean.index, y=yearly_data_mean[i]))
-        fig.layout.update(title_text=i, xaxis_rangeslider_visible=False, width=1500, height=600)    
+        fig.layout.update(title_text=i, xaxis_rangeslider_visible=False, width=800, height=600)    
+        st.plotly_chart(fig)
+    
+def line_chart_4home(st, data):
+    for i in data.columns[1:]:
+        data = data.set_index('Date').resample('D').mean().reset_index()
+        data['year'] = data.Date.dt.year
+        yearly_data_mean = data[[i, 'year']].groupby('year').mean()
+        fig = go.Figure()
+        fig.add_trace(go.Line(x=yearly_data_mean.index, y=yearly_data_mean[i]))
+        fig.layout.update(title_text=i, xaxis_rangeslider_visible=False, width=800, height=600)    
         st.plotly_chart(fig)
 
 
