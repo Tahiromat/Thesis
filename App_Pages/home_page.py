@@ -7,19 +7,14 @@ from plotly import graph_objs as go
 def home_page(st, data):
     data['Date'] = pd.to_datetime(data['Date'])
     # data = data.loc[data['Date'] >= '2022-03-01']
-    st.title('Air Quality of Turkey')
-
-    # st.write(data)
+    st.title('Air Quality Analysis of Turkey')
 
     # map_view(st, 41.015137, 28.979530) # Istanbul
     # map_view(st, 41.637602, 32.333811) 
-
     st.markdown('#')
     pie_chart_4home(st, data)
-
+    st.markdown('#')
     col1, col2 = st.columns(2)
-
-
     with col1:
         bar_chart_4home(st, data)
     with col2:
@@ -27,13 +22,10 @@ def home_page(st, data):
 
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HOME PAGE HELPER METHODS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 def map_view(st, lat, lon):
-
     # df = pd.DataFrame(
     # np.random.randn(100, 2) / [25, 25] + [lat, long],
     # columns=['lat', 'lon'])
-
     st.pydeck_chart(pdk.Deck(
         map_style='mapbox://styles/mapbox/light-v9',
         initial_view_state=pdk.ViewState(
@@ -62,8 +54,6 @@ def map_view(st, lat, lon):
             ),
         ],
     ))
-
-
 
 def pie_chart_4home(st, data):
     mean_values = []
@@ -98,8 +88,6 @@ def line_chart_4home(st, data):
         fig.layout.update(title_text=i, xaxis_rangeslider_visible=False, width=800, height=600)    
         st.plotly_chart(fig)
 
-
-
 def graphviz_4home(st):
     st.graphviz_chart('''
     digraph {
@@ -114,9 +102,3 @@ def graphviz_4home(st):
         }
     ''')
 
-
-# locations = pd.DataFrame({
-#     'cities' : ['Bartın', 'Nevşehir', 'Muş', 'Bolu', 'Niğde', 'Batman', 'Afyon', 'Kastamonu', 'Uşak', 'Amasya', 'Iğdır', 'Bilecik', 'Bitlis', 'Gaziantep', 'Ardahan', 'Kırıkkale', 'Edirne', 'Sinop', 'Yalova', 'Çanakkale', 'Elazığ', 'Ankara', 'Çorum', 'Adıyaman', 'Mersin', 'Yozgat', 'Kayseri', 'Erzincan', 'Rize', 'Hakkari', 'Osmaniye', 'Manisa', 'Balıkesir', 'Sivas', 'Muğla', 'Sakarya', 'İzmir', 'Giresun', 'Artvin', 'Samsun', 'Karaman', 'Tekirdağ', 'Kilis', 'Tunceli', 'Diyarbakır', 'Ağrı', 'Çankaya', 'Kahramanmaraş', 'Kütahya', 'İstanbul', 'Trabzon', 'Bingöl', 'Antalya', 'Kocaeli', 'Şırnak', 'Kırklareli', 'Burdur', 'Siirt', 'Erzurum', 'Hatay', 'Düzce', 'Aksaray', 'Gümüşhane', 'Denizli', 'Isparta', 'Adana', 'Şanlıurfa', 'Kars', 'Malatya', 'Çankırı', 'Karabük', 'Aydın', 'Ordu', 'Konya', 'Bursa', 'Zonguldak', 'Eskişehir', 'Tokat', 'Bayburt', 'Kırşehir']
-#     'lat' : [41.637602,]
-#     'lon' : [32.333811]
-# })
