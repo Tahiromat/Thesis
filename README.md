@@ -1,5 +1,7 @@
 ### Anomaly Detection in Air Quality in Turkey
 
+-Reach the app from https://share.streamlit.io/tahiromat/thesis/app.py
+
 ## Description: 
 The purpose of the application; To make air quality analysis at every point in Turkey. Our data set consists of time
 series data based on 7 different variables collected through stations from 346 different points of Turkey. The data are
