@@ -1,59 +1,13 @@
 ### Anomaly Detection in Air Quality in Turkey
 
 ## Description: 
-- 
-- 
-- 
+The purpose of the application; To make air quality analysis at every point in Turkey. Our data set consists of time
+series data based on 7 different variables collected through stations from 346 different points of Turkey. The data are
+scraped from the official site of the Turkish Ministry of Climate with the SELENIUM library. It is analyzed with
+different time frequencies using the PLOTLY library. Anomaly detection is made by using ISOLATION FOREST and
+PROPHET libraries and it facilitates control with warning systems. Forecasting is done by using LSTM, ARIMA and
+PROPHET algorithms and it enables to take precautions for problems that may occur in the future. STREAMLIT is
+used to publish the application publicly and to continuously improve the models with CLOUD-BASED PROCESSING.
+Thus, optimization is ensured in the inspection processes in the relevant institutions and a better quality breathing
+air is obtained.
 
-# Requirements Instructions
-- Create requirements.txt --> $ pipreqs
-- Update requirements.txt file --> $ pipreqs --force
-- Download libraries from requirements.txt file --> $ pip3 install -r requirements.txt
-
-# Virtual Enviroment Instructions
-- Create the virtual environment --> $ virtualenv venv
-- Activate the virtual environment --> $ source venv/bin/activate
-- Deactivate the virtual environment --> $ deactivate
-
-# Github Instructions 
-- $ git init
-- $ git add .
-- $ git commit -m 'Commit'
-- $ git remote add origin <- write the link that you created for new repository ->
-- $ git push origin master
-- $ git push -f origin master -------> To force push the repo
-- $ rm -rf .git -------> For re-init your work to another repo; then turn to $ git init back from another folder.
-- 
-- TO UPDATE EXISTING FILES IN REPO
-- $ git add .
-- $ git commit -m 'Commit'
-- $ git push origin master
-
-# Streamlit Instructions
-- [Geographical Data Visualization](https://www.youtube.com/watch?v=PuJ_JUkahXQ)
-- [For animated visualizatin](https://www.youtube.com/watch?v=VZ_tS4F6P2A)
-
-# Notes
-- [For the time series algorithms](https://www.youtube.com/watch?v=7MhZ2DDg89Y)
-
-******************************************************************************************************************************************************  
-
-# Current Works
-
-
-
-
-
-******************************************************************************************************************************************************  
-
-# Referance Links For Forecast
-- [PROPHET Forecasting](https://medium.com/analytics-vidhya/time-series-analysis-a-quick-tour-of-fbprophet-cbbfbffdf9d8)
-- [LSTM Forecasting](https://www.youtube.com/watch?v=QIUxPv5PJOY)
-- [LSTM Forecasting](https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/)#Alternative link 
-- [ARIMA Forecasting](https://www.youtube.com/watch?v=JMT1eGJ9c2M) 
-- [ARIMA Forecasting](https://www.analyticsvidhya.com/blog/2020/10/how-to-create-an-arima-model-for-time-series-forecasting-in-python/)#Alternative link 
-
-# Referance Links For Anomaly Detection
-- [LSTM Anomaly Detection](https://towardsdatascience.com/time-series-of-price-anomaly-detection-with-lstm-11a12ba4f6d9)
-- [LSTM Anomaly Detection](https://curiousily.com/posts/anomaly-detection-in-time-series-with-lstms-using-keras-in-python/) #Alternative link 
-- [Isolation Forest Anomaly Detection](https://www.youtube.com/watch?v=hkXPdkPfgoo)
